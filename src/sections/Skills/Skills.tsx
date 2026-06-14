@@ -139,7 +139,7 @@ const skills: Skill[] = [
   {
     name: 'CapCut',
     description: 'Video editing',
-    icon: '/assets/logos/Capcut.png',
+    icon: '/assets/logos/capcut.png',
     brandColor: '#FFFFFF',
     glowHSL: '0 0 100',
   },

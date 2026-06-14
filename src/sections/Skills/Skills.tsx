@@ -41,7 +41,7 @@ const skills: Skill[] = [
   {
     name: 'CSS',
     description: 'Styling and responsive design',
-    icon: '/CSS.webp',
+    icon: '/assets/logos/CSS.webp',
     brandColor: '#1572B6',
     glowHSL: '203 80 40',
   },
@@ -139,7 +139,7 @@ const skills: Skill[] = [
   {
     name: 'CapCut',
     description: 'Video editing',
-    icon: '/capcut.png',
+    icon: '/assets/logos/Capcut.png',
     brandColor: '#FFFFFF',
     glowHSL: '0 0 100',
   },
@@ -160,14 +160,14 @@ const skills: Skill[] = [
   {
     name: 'Adobe Stock',
     description: 'Generate AI images/videos, create metadata, then upload to Adobe Stock',
-    icon: '/download.png',
+    icon: '/assets/logos/download.png',
     brandColor: '#0B1F3A',
     glowHSL: '214 68 14',
   },
   {
     name: 'Mobile Legends',
     description: 'Reached Mythical Glory rank with 56 stars',
-    icon: '/ML-removebg-preview.png',
+    icon: '/assets/logos/ML-removebg-preview.png',
     brandColor: '#D62828',
     glowHSL: '42 92 52',
   },

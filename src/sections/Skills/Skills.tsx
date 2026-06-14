@@ -1,5 +1,6 @@
 import { BorderGlow, BlurText } from '../../components/ReactBits'
 import { useEffect, useRef, useState } from 'react'
+import type { Language } from '../../components/Navbar'
 
 interface Skill {
   name: string
@@ -7,6 +8,32 @@ interface Skill {
   icon: string
   brandColor: string
   glowHSL: string
+}
+
+const skillDescriptionsId: Record<string, string> = {
+  Linux: 'Dasar sistem operasi dan server',
+  Docker: 'Containerization dan deployment',
+  Ansible: 'Otomasi dan manajemen konfigurasi',
+  HTML: 'Struktur dan markup web',
+  CSS: 'Styling dan desain responsif',
+  JavaScript: 'Bahasa pemrograman',
+  'Vue.js': 'Framework front-end',
+  React: 'Library UI untuk membangun antarmuka',
+  'Next.js': 'Framework React untuk aplikasi web produksi',
+  TypeScript: 'Pengembangan JavaScript bertipe',
+  Vite: 'Build tool cepat untuk web modern',
+  'Tailwind CSS': 'Framework CSS utility-first',
+  'Three.js': 'Grafik 3D untuk web',
+  GSAP: 'Animasi dan efek motion',
+  n8n: 'Otomasi workflow',
+  MySQL: 'Database relasional',
+  PostgreSQL: 'Database relasional',
+  Laravel: 'Framework web PHP',
+  CapCut: 'Editing video',
+  Shopee: 'Marketplace dan konten afiliasi',
+  Subnetting: 'Perencanaan alamat jaringan dan IP',
+  'Adobe Stock': 'Membuat gambar/video AI, metadata, lalu mengunggah ke Adobe Stock',
+  'Mobile Legends': 'Mencapai rank Mythical Glory dengan 56 bintang',
 }
 
 const skills: Skill[] = [
@@ -173,7 +200,7 @@ const skills: Skill[] = [
   },
 ]
 
-function SkillCard({ skill }: { skill: Skill }) {
+function SkillCard({ skill, language }: { skill: Skill; language: Language }) {
   const ref = useRef<HTMLDivElement>(null)
   const [visible, setVisible] = useState(false)
 
@@ -219,26 +246,26 @@ function SkillCard({ skill }: { skill: Skill }) {
         <h3 className="text-center text-xl font-display font-semibold tracking-tight text-[#f2ede5]">
           {skill.name}
         </h3>
-        <p className="text-center font-sans text-sm leading-relaxed text-[#a89e92]">{skill.description}</p>
+        <p className="text-center font-sans text-sm leading-relaxed text-[#a89e92]">
+          {language === 'id' ? skillDescriptionsId[skill.name] : skill.description}
+        </p>
       </div>
     </BorderGlow>
   )
 }
 
-export function Skills() {
+export function Skills({ language = 'en' }: { language?: Language }) {
   return (
     <section
       id="skills"
-      className="relative overflow-hidden bg-[#0b0b0e] px-6 py-32 text-[#f2ede5] md:px-10 md:py-40 lg:px-12 lg:py-48"
+      className="relative overflow-hidden bg-transparent px-6 py-32 text-[#f2ede5] md:px-10 md:py-40 lg:px-12 lg:py-48"
     >
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_18%,rgba(200,169,110,0.13),transparent_30%),radial-gradient(circle_at_18%_60%,rgba(242,237,229,0.055),transparent_30%),linear-gradient(180deg,rgba(11,11,14,0),rgba(200,169,110,0.035))]" />
-      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(242,237,229,0.022)_1px,transparent_1px),linear-gradient(90deg,rgba(242,237,229,0.015)_1px,transparent_1px)] bg-[size:80px_80px] opacity-30 [mask-image:radial-gradient(circle_at_center,black,transparent_74%)]" />
-      <div className="pointer-events-none absolute left-1/2 top-32 h-80 w-[44rem] -translate-x-1/2 rounded-full bg-[#c8a96e]/[0.055] blur-3xl" />
+      <div className="pointer-events-none absolute left-1/2 top-24 h-[32rem] w-[54rem] -translate-x-1/2 rounded-full bg-[#c8a96e]/[0.04] blur-3xl" />
 
       <div className="relative mx-auto max-w-7xl">
         <div>
           <BlurText
-            text="My Skills"
+            text={language === 'id' ? 'Skill Saya' : 'My Skills'}
             delay={55}
             className="text-6xl font-display font-bold leading-none tracking-tight text-[#f2ede5] drop-shadow-[0_22px_60px_rgba(0,0,0,0.42)] [&>span:nth-child(2)]:text-[#c8a96e] sm:text-7xl lg:text-8xl"
           />
@@ -247,7 +274,7 @@ export function Skills() {
 
         <div className="mt-20 grid gap-4 sm:grid-cols-2 md:mt-24 md:gap-5 lg:grid-cols-3 xl:grid-cols-4">
           {skills.map((skill) => (
-            <SkillCard key={skill.name} skill={skill} />
+            <SkillCard key={skill.name} skill={skill} language={language} />
           ))}
         </div>
       </div>

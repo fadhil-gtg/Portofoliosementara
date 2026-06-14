@@ -1,9 +1,16 @@
 import { BlurText, LogoLoop, ProfileCard, ScrollReveal, type LogoLoopItem } from '../../components/ReactBits'
+import type { Language } from '../../components/Navbar'
 
-const aboutDescription = [
-  'I am a vocational high school student majoring in Computer and Network Engineering (TKJ) with a strong interest in front-end web development, Linux, and system administration. I enjoy learning how websites are built to look attractive, organized, and easy to use, while also understanding the technical side behind systems and computer networks. This interest makes me enjoy exploring technology from both the interface and infrastructure perspectives.',
-  'I have also completed an internship in networking, which gave me hands-on experience in the working world and strengthened my understanding of real-world technical practices. Moving forward, I want to keep learning and improving so I can become more prepared for a career in IT, especially in web and system-related fields.',
-]
+const aboutDescriptions: Record<Language, string[]> = {
+  en: [
+    'I am a vocational high school student majoring in Computer and Network Engineering (TKJ) with a strong interest in front-end web development, Linux, and system administration. I enjoy learning how websites are built to look attractive, organized, and easy to use, while also understanding the technical side behind systems and computer networks. This interest makes me enjoy exploring technology from both the interface and infrastructure perspectives.',
+    'I have also completed an internship in networking, which gave me hands-on experience in the working world and strengthened my understanding of real-world technical practices. Moving forward, I want to keep learning and improving so I can become more prepared for a career in IT, especially in web and system-related fields.',
+  ],
+  id: [
+    'Saya adalah siswa SMK jurusan Teknik Komputer dan Jaringan (TKJ) dengan minat kuat pada front-end web development, Linux, dan administrasi sistem. Saya senang mempelajari bagaimana website dibuat agar terlihat menarik, terstruktur, dan mudah digunakan, sekaligus memahami sisi teknis di balik sistem dan jaringan komputer.',
+    'Saya juga telah menyelesaikan praktik kerja industri di bidang jaringan, yang memberi saya pengalaman langsung di dunia kerja dan memperkuat pemahaman saya tentang praktik teknis nyata. Ke depannya, saya ingin terus belajar dan berkembang agar lebih siap berkarier di bidang IT, terutama pada web dan sistem.',
+  ],
+}
 
 const logoItems: LogoLoopItem[] = [
   { src: 'https://cdn.simpleicons.org/html5/FAFAF7', alt: 'HTML', title: 'HTML' },
@@ -28,7 +35,8 @@ const logoItems: LogoLoopItem[] = [
   { src: 'https://cdn.simpleicons.org/gnometerminal/FAFAF7', alt: 'Networking', title: 'Networking' },
 ]
 
-export function About() {
+export function About({ language = 'en' }: { language?: Language }) {
+  const aboutDescription = aboutDescriptions[language]
   const handleContactClick = () => {
     const contactSection = document.querySelector<HTMLElement>('#contact')
     if (!contactSection) return
@@ -42,14 +50,24 @@ export function About() {
     contactSection.scrollIntoView({ behavior: 'smooth' })
   }
 
+  const handleCVDownload = () => {
+    const cvUrl = language === 'id' ? '/assets/frames/Indo.pdf' : '/assets/frames/Adhika-english.pdf'
+    const link = document.createElement('a')
+    link.href = cvUrl
+    link.download = language === 'id' ? 'CV-Adhika-Fadhil-ID.pdf' : 'CV-Adhika-Fadhil-EN.pdf'
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+  }
+
+  const downloadText = language === 'id' ? 'Unduh CV' : 'Download CV'
+
   return (
     <section
       id="about"
-      className="relative min-h-screen overflow-hidden bg-[#0b0b0e] px-6 py-32 text-paper md:px-10 md:py-40 lg:px-12 lg:py-48"
+      className="relative min-h-screen overflow-hidden bg-transparent px-6 py-32 text-paper md:px-10 md:py-40 lg:px-12 lg:py-48"
     >
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_12%,rgba(200,169,110,0.16),transparent_28%),radial-gradient(circle_at_82%_34%,rgba(242,237,229,0.07),transparent_32%),linear-gradient(180deg,rgba(11,11,14,0)_0%,rgba(200,169,110,0.045)_100%)]" />
-      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(242,237,229,0.025)_1px,transparent_1px),linear-gradient(90deg,rgba(242,237,229,0.018)_1px,transparent_1px)] bg-[size:72px_72px] opacity-35 [mask-image:radial-gradient(circle_at_center,black,transparent_72%)]" />
-      <div className="pointer-events-none absolute inset-x-0 top-1/4 h-96 bg-[radial-gradient(ellipse_at_center,rgba(200,169,110,0.08),transparent_68%)] blur-3xl" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-[36rem] bg-[radial-gradient(ellipse_at_18%_20%,rgba(200,169,110,0.055),transparent_68%)] blur-3xl" />
 
       <div className="relative mx-auto max-w-7xl">
         <div className="grid gap-14 lg:grid-cols-[minmax(280px,390px)_1fr] lg:gap-20 xl:gap-28">
@@ -58,12 +76,13 @@ export function About() {
               name="Adhika Fadhil"
               title="Full Stack Developer"
               handle="adhikafadhil"
-              status="Open to collaborate"
-              contactText="Contact Me"
+              status={language === 'id' ? 'Terbuka untuk kolaborasi' : 'Open to collaborate'}
+              contactText={language === 'id' ? 'Hubungi Saya' : 'Contact Me'}
               behindGlowEnabled={false}
               showUserInfo={true}
-              avatarUrl="/placeholder-avatar.jpg"
+              avatarUrl="/assets/logos/ChatGPT_Image_14_Jun_2026__18.36.44-removebg-preview.png"
               iconUrl="/assets/iconpattern.svg"
+              miniAvatarUrl="/assets/logos/ChatGPT_Image_14_Jun_2026__18.36.44-removebg-preview.png"
               enableTilt={true}
               enableMobileTilt={false}
               onContactClick={handleContactClick}
@@ -90,6 +109,19 @@ export function About() {
                   {paragraph}
                 </ScrollReveal>
               ))}
+            </div>
+
+            <div className="mt-6">
+              <button
+                onClick={handleCVDownload}
+                className="inline-flex items-center gap-2 rounded-lg border border-[#c8a96e]/30 bg-[#c8a96e]/10 px-6 py-3 font-sans text-sm font-medium text-[#c8a96e] transition hover:bg-[#c8a96e]/20 hover:border-[#c8a96e]/50 focus:outline-none focus:ring-2 focus:ring-[#c8a96e]/50"
+                type="button"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                </svg>
+                {downloadText}
+              </button>
             </div>
           </div>
         </div>

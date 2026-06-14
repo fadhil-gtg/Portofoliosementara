@@ -4,6 +4,8 @@ import { useScrollDirection } from '../../hooks/useScrollDirection'
 import { useSectionVisible } from '../../hooks/useSectionVisible'
 import { Magnet, ShinyText } from '../ReactBits'
 
+export type Language = 'id' | 'en'
+
 export interface NavItem {
   label: string
   href: string
@@ -19,6 +21,8 @@ export interface NavbarProps {
    * Optional override for the navigation items.
    */
   items?: NavItem[]
+  language?: Language
+  onLanguageChange?: (language: Language) => void
   className?: string
 }
 
@@ -40,6 +44,8 @@ const DEFAULT_ITEMS: NavItem[] = [
 export function Navbar({
   revealAtId = 'about',
   items = DEFAULT_ITEMS,
+  language = 'en',
+  onLanguageChange,
   className,
 }: NavbarProps) {
   const aboutVisible = useSectionVisible(revealAtId, { thresholdRatio: 0.15 })
@@ -132,46 +138,42 @@ export function Navbar({
           ))}
         </ul>
 
-        <Magnet padding={48} magnetStrength={6} wrapperClassName="hidden md:inline-block">
-          <a
-            href="#contact"
-            onClick={(e) => handleClick(e, '#contact')}
-            className={cn(
-              'inline-flex whitespace-nowrap rounded-full bg-white/90 px-5 py-3 font-sans text-sm font-semibold text-black shadow-[0_14px_40px_rgba(0,0,0,0.22)] transition duration-[600ms] hover:-translate-y-0.5 hover:bg-white'
-            )}
-          >
-            Contact Me
-          </a>
-        </Magnet>
-
-        {/* Mobile nav — compact horizontal list, scrollable if needed */}
-        <ul className="-mr-2 flex items-center gap-3 overflow-x-auto pr-2 no-scrollbar md:hidden">
-          {items.map((item) => (
-            <li key={item.href} className="shrink-0">
-              <a
-                href={item.href}
-                onClick={(e) => handleClick(e, item.href)}
+        <div className="hidden items-center gap-3 md:flex">
+          <div className="relative flex rounded-full border border-white/10 bg-white/[0.045] p-1 shadow-[0_10px_34px_rgba(0,0,0,0.18)] backdrop-blur-md">
+            <span
+              className={cn(
+                'absolute bottom-1 top-1 w-[calc(50%-0.25rem)] rounded-full bg-[#f2ede5] shadow-[0_8px_22px_rgba(0,0,0,0.2)] transition-transform duration-[500ms] ease-[cubic-bezier(0.22,1,0.36,1)]',
+                language === 'id' ? 'translate-x-0' : 'translate-x-full'
+              )}
+            />
+            {(['id', 'en'] as const).map((item) => (
+              <button
+                key={item}
+                type="button"
+                aria-pressed={language === item}
+                onClick={() => onLanguageChange?.(item)}
                 className={cn(
-                  'text-[11px] font-mono uppercase tracking-[0.18em]',
-                  'text-white/70 transition-colors duration-300 hover:text-white'
+                  'relative z-10 min-w-10 rounded-full px-3 py-2 text-xs font-mono font-semibold uppercase tracking-[0.14em] transition-colors duration-[400ms]',
+                  language === item ? 'text-[#0b0b0e]' : 'text-[#f2ede5]/55 hover:text-[#f2ede5]'
                 )}
               >
-                {item.label}
-              </a>
-            </li>
-          ))}
-          <li className="shrink-0">
-            <Magnet padding={28} magnetStrength={8}>
-              <a
-                href="#contact"
-                onClick={(e) => handleClick(e, '#contact')}
-                className="inline-flex rounded-full bg-white/90 px-4 py-2 text-[11px] font-mono uppercase tracking-[0.16em] text-black"
-              >
-                Contact Me
-              </a>
-            </Magnet>
-          </li>
-        </ul>
+                {item.toUpperCase()}
+              </button>
+            ))}
+          </div>
+
+          <Magnet padding={48} magnetStrength={6}>
+            <a
+              href="#contact"
+              onClick={(e) => handleClick(e, '#contact')}
+              className={cn(
+                'inline-flex whitespace-nowrap rounded-full bg-white/90 px-5 py-3 font-sans text-sm font-semibold text-black shadow-[0_14px_40px_rgba(0,0,0,0.22)] transition duration-[600ms] hover:-translate-y-0.5 hover:bg-white'
+              )}
+            >
+              Contact Me
+            </a>
+          </Magnet>
+        </div>
       </nav>
     </header>
   )

@@ -1,6 +1,7 @@
 import { Github, ExternalLink } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import { BlurText } from '../../components/ReactBits'
+import type { Language } from '../../components/Navbar'
 
 interface Project {
   title: string
@@ -9,6 +10,13 @@ interface Project {
   githubUrl: string
   demoUrl: string
   accent: string
+}
+
+const projectDescriptionsId: Record<string, string> = {
+  'Portfolio Motion System': 'Pengalaman portfolio sinematik dengan storytelling berbasis scroll, section animatif, layout responsif, dan interaction design yang rapi.',
+  'Linux Server Lab': 'Lab administrasi sistem praktis yang fokus pada service Linux, permission, package workflow, shell tooling, dan kebiasaan maintenance yang andal.',
+  'Network Troubleshooting Kit': 'Konsep toolkit pembelajaran untuk dokumentasi IP addressing, diagnostik, pengecekan routing, dan workflow troubleshooting terstruktur.',
+  'TKJ Learning Hub': 'Ruang belajar terstruktur untuk mengumpulkan catatan networking, command Linux, eksperimen web, dan referensi teknis praktis.',
 }
 
 const projects: Project[] = [
@@ -50,7 +58,7 @@ const projects: Project[] = [
   },
 ]
 
-function ProjectCard({ project, index }: { project: Project; index: number }) {
+function ProjectCard({ project, index, language }: { project: Project; index: number; language: Language }) {
   const ref = useRef<HTMLElement>(null)
   const [visible, setVisible] = useState(false)
 
@@ -72,7 +80,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
   return (
     <article
       ref={ref}
-      className={`group overflow-hidden rounded-[2rem] border border-[#f2ede5]/10 bg-[#141316]/72 p-4 shadow-[0_26px_90px_rgba(0,0,0,0.32)] backdrop-blur-md transition-[opacity,transform,background-color,border-color,box-shadow] duration-[800ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-2 hover:scale-[1.015] hover:border-[#f2ede5]/18 hover:bg-[#171519]/84 hover:shadow-[22px_34px_100px_rgba(0,0,0,0.56)] ${
+      className={`group overflow-hidden rounded-3xl border border-white/[0.06] bg-[#18181d] p-4 shadow-[0_16px_48px_rgba(0,0,0,0.18)] transition-[opacity,transform,border-color,box-shadow] duration-[800ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:border-[#c8a96e]/25 hover:shadow-[0_20px_60px_rgba(0,0,0,0.25)] ${
         visible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
       }`}
       style={{ transitionDelay: `${Math.min(index * 110, 330)}ms` }}
@@ -107,7 +115,9 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
           </span>
         </div>
 
-        <p className="mt-5 font-sans text-base leading-8 text-[#a89e92] md:text-lg md:leading-9">{project.description}</p>
+        <p className="mt-5 font-sans text-base leading-8 text-[#a89e92] md:text-lg md:leading-9">
+          {language === 'id' ? projectDescriptionsId[project.title] : project.description}
+        </p>
 
         <div className="mt-7 flex flex-wrap gap-2">
           {project.stack.map((tech) => (
@@ -143,29 +153,30 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
   )
 }
 
-export function Projects() {
+export function Projects({ language = 'en' }: { language?: Language }) {
   return (
     <section
       id="projects"
-      className="relative overflow-hidden bg-[#0b0b0e] px-6 py-32 text-[#f2ede5] md:px-10 md:py-40 lg:px-12 lg:py-48"
+      className="relative overflow-hidden bg-transparent px-6 py-[150px] text-[#f2ede5] md:px-10 md:py-[170px] lg:px-12 lg:py-[180px]"
     >
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_78%_14%,rgba(200,169,110,0.13),transparent_30%),radial-gradient(circle_at_18%_24%,rgba(242,237,229,0.055),transparent_30%),linear-gradient(180deg,rgba(11,11,14,0),rgba(200,169,110,0.035))]" />
-      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(242,237,229,0.022)_1px,transparent_1px),linear-gradient(90deg,rgba(242,237,229,0.015)_1px,transparent_1px)] bg-[size:80px_80px] opacity-30 [mask-image:radial-gradient(circle_at_center,black,transparent_74%)]" />
-      <div className="pointer-events-none absolute left-1/2 top-28 h-80 w-[46rem] -translate-x-1/2 rounded-full bg-[#c8a96e]/[0.05] blur-3xl" />
+      <div className="pointer-events-none absolute left-1/2 top-0 h-[38rem] w-[68rem] -translate-x-1/2 rounded-full bg-[rgba(200,169,110,0.04)] blur-[110px]" />
+      <div className="pointer-events-none absolute bottom-0 right-[-10%] h-[34rem] w-[60rem] rounded-full bg-[rgba(200,169,110,0.035)] blur-[120px]" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-[#0b0b0e]/35 to-transparent" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-56 bg-gradient-to-b from-transparent to-[#0b0b0e]/45" />
 
       <div className="relative mx-auto max-w-7xl">
         <div>
           <BlurText
-            text="My Projects"
+            text={language === 'id' ? 'Proyek Saya' : 'My Projects'}
             delay={55}
-            className="text-6xl font-display font-bold leading-none tracking-tight text-[#f2ede5] drop-shadow-[0_22px_60px_rgba(0,0,0,0.42)] [&>span:nth-child(2)]:text-[#c8a96e] sm:text-7xl lg:text-8xl"
+            className="text-6xl font-display font-bold leading-none tracking-tight text-[#f2ede5] [&>span:nth-child(2)]:text-[#c8a96e] sm:text-7xl lg:text-8xl"
           />
-          <div className="mt-8 h-px w-28 bg-gradient-to-r from-[#c8a96e] via-[#c8a96e]/45 to-transparent" />
+          <div className="mt-8 h-px w-20 bg-[rgba(200,169,110,0.6)]" />
         </div>
 
-        <div className="mt-20 grid gap-8 lg:mt-24 lg:grid-cols-2 xl:gap-10">
+        <div className="mt-20 grid gap-7 lg:mt-24 lg:grid-cols-2 xl:gap-8">
           {projects.map((project, index) => (
-            <ProjectCard key={project.title} project={project} index={index} />
+            <ProjectCard key={project.title} project={project} index={index} language={language} />
           ))}
         </div>
       </div>

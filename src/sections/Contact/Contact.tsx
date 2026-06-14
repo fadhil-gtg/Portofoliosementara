@@ -1,5 +1,6 @@
 import { Github, Instagram, Linkedin, Mail, Phone, Send, Youtube } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
+import type { Language } from '../../components/Navbar'
 import { BlurText } from '../../components/ReactBits'
 
 function TikTokIcon({ className }: { className?: string }) {
@@ -26,7 +27,7 @@ const socialLinks = [
   { label: 'YouTube', href: 'https://youtube.com/', icon: Youtube },
 ]
 
-export function Contact() {
+export function Contact({ language = 'en' }: { language?: Language }) {
   const formRef = useRef<HTMLFormElement>(null)
   const [formVisible, setFormVisible] = useState(false)
 
@@ -48,24 +49,25 @@ export function Contact() {
   return (
     <section
       id="contact"
-      className="relative overflow-hidden bg-[#0b0b0e] px-6 py-32 text-[#f2ede5] md:px-10 md:py-40 lg:px-12 lg:py-48"
+      className="relative overflow-hidden bg-transparent px-6 py-32 text-[#f2ede5] md:px-10 md:py-40 lg:px-12 lg:py-48"
     >
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(200,169,110,0.14),transparent_32%),radial-gradient(circle_at_16%_64%,rgba(242,237,229,0.055),transparent_30%),linear-gradient(180deg,rgba(11,11,14,0),rgba(200,169,110,0.04))]" />
-      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(242,237,229,0.022)_1px,transparent_1px),linear-gradient(90deg,rgba(242,237,229,0.015)_1px,transparent_1px)] bg-[size:80px_80px] opacity-30 [mask-image:radial-gradient(circle_at_center,black,transparent_74%)]" />
-      <div className="pointer-events-none absolute left-1/2 top-24 h-96 w-[48rem] -translate-x-1/2 rounded-full bg-[#c8a96e]/[0.055] blur-3xl" />
+      <div className="pointer-events-none absolute left-1/2 top-20 h-[36rem] w-[58rem] -translate-x-1/2 rounded-full bg-[#c8a96e]/[0.04] blur-3xl" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-[#0b0b0e]/45" />
 
       <div className="relative mx-auto max-w-7xl">
         <div className="grid gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:items-start lg:gap-20 xl:gap-28">
           <div>
-            <BlurText
-              text="Punya Proyek? Mari Kita Wujudkan."
+          <BlurText
+            text={language === 'id' ? 'Punya Proyek? Mari Kita Wujudkan.' : 'Punya Proyek? Mari Kita Wujudkan.'}
               delay={45}
               className="max-w-4xl text-5xl font-display font-bold leading-[0.98] tracking-tight text-[#f2ede5] drop-shadow-[0_22px_60px_rgba(0,0,0,0.42)] sm:text-6xl md:text-7xl lg:text-8xl"
             />
             <div className="mt-8 h-px w-28 bg-gradient-to-r from-[#c8a96e] via-[#c8a96e]/45 to-transparent" />
 
             <p className="mt-8 max-w-xl font-sans text-base leading-8 text-[#a89e92] md:text-lg md:leading-9">
-              Terbuka untuk kolaborasi, eksplorasi ide, atau membangun pengalaman digital yang terasa rapi, cepat, dan profesional.
+              {language === 'id'
+                ? 'Terbuka untuk kolaborasi, eksplorasi ide, atau membangun pengalaman digital yang terasa rapi, cepat, dan profesional.'
+                : 'Open to collaboration, idea exploration, or building digital experiences that feel neat, fast, and professional.'}
             </p>
 
             <div className="mt-12 flex flex-wrap gap-3">

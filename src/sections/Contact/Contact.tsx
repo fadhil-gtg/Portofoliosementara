@@ -1,0 +1,147 @@
+import { Github, Instagram, Linkedin, Mail, Phone, Send, Youtube } from 'lucide-react'
+import { useEffect, useRef, useState } from 'react'
+import { BlurText } from '../../components/ReactBits'
+
+function TikTokIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path
+        d="M14.5 3v11.05a4.45 4.45 0 1 1-4.45-4.45c.31 0 .61.03.9.09v2.94a1.74 1.74 0 1 0 .85 1.49V3h2.7Zm0 0c.34 2.28 1.74 3.8 4 4.28v2.92c-1.62-.08-2.98-.58-4-1.48"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
+}
+
+const socialLinks = [
+  { label: 'Gmail', href: 'mailto:adhikafadhil@example.com', icon: Mail },
+  { label: 'WhatsApp', href: 'https://wa.me/', icon: Phone },
+  { label: 'Instagram', href: 'https://instagram.com/', icon: Instagram },
+  { label: 'LinkedIn', href: 'https://linkedin.com/', icon: Linkedin },
+  { label: 'GitHub', href: 'https://github.com/', icon: Github },
+  { label: 'TikTok', href: 'https://tiktok.com/', icon: TikTokIcon },
+  { label: 'YouTube', href: 'https://youtube.com/', icon: Youtube },
+]
+
+export function Contact() {
+  const formRef = useRef<HTMLFormElement>(null)
+  const [formVisible, setFormVisible] = useState(false)
+
+  useEffect(() => {
+    const el = formRef.current
+    if (!el) return
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setFormVisible(entry.isIntersecting)
+      },
+      { threshold: 0.18, rootMargin: '0px 0px -8% 0px' }
+    )
+
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
+
+  return (
+    <section
+      id="contact"
+      className="relative overflow-hidden bg-[#0b0b0e] px-6 py-32 text-[#f2ede5] md:px-10 md:py-40 lg:px-12 lg:py-48"
+    >
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(200,169,110,0.14),transparent_32%),radial-gradient(circle_at_16%_64%,rgba(242,237,229,0.055),transparent_30%),linear-gradient(180deg,rgba(11,11,14,0),rgba(200,169,110,0.04))]" />
+      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(242,237,229,0.022)_1px,transparent_1px),linear-gradient(90deg,rgba(242,237,229,0.015)_1px,transparent_1px)] bg-[size:80px_80px] opacity-30 [mask-image:radial-gradient(circle_at_center,black,transparent_74%)]" />
+      <div className="pointer-events-none absolute left-1/2 top-24 h-96 w-[48rem] -translate-x-1/2 rounded-full bg-[#c8a96e]/[0.055] blur-3xl" />
+
+      <div className="relative mx-auto max-w-7xl">
+        <div className="grid gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:items-start lg:gap-20 xl:gap-28">
+          <div>
+            <BlurText
+              text="Punya Proyek? Mari Kita Wujudkan."
+              delay={45}
+              className="max-w-4xl text-5xl font-display font-bold leading-[0.98] tracking-tight text-[#f2ede5] drop-shadow-[0_22px_60px_rgba(0,0,0,0.42)] sm:text-6xl md:text-7xl lg:text-8xl"
+            />
+            <div className="mt-8 h-px w-28 bg-gradient-to-r from-[#c8a96e] via-[#c8a96e]/45 to-transparent" />
+
+            <p className="mt-8 max-w-xl font-sans text-base leading-8 text-[#a89e92] md:text-lg md:leading-9">
+              Terbuka untuk kolaborasi, eksplorasi ide, atau membangun pengalaman digital yang terasa rapi, cepat, dan profesional.
+            </p>
+
+            <div className="mt-12 flex flex-wrap gap-3">
+              {socialLinks.map((item) => {
+                const Icon = item.icon
+
+                return (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    target={item.href.startsWith('http') ? '_blank' : undefined}
+                    rel={item.href.startsWith('http') ? 'noreferrer' : undefined}
+                    aria-label={item.label}
+                    title={item.label}
+                    className="group inline-flex h-12 w-12 items-center justify-center rounded-full border border-[#f2ede5]/10 bg-[#141316]/70 text-[#f2ede5] shadow-[0_20px_70px_rgba(0,0,0,0.24)] backdrop-blur-md transition duration-[600ms] hover:-translate-y-0.5 hover:border-[#c8a96e]/35 hover:bg-[#c8a96e] hover:text-[#0b0b0e]"
+                  >
+                    <Icon className="h-5 w-5 transition duration-[600ms] group-hover:scale-105" strokeWidth={1.8} />
+                  </a>
+                )
+              })}
+            </div>
+          </div>
+
+          <form
+            ref={formRef}
+            className={`rounded-[2rem] border border-[#f2ede5]/10 bg-[#141316]/72 p-6 shadow-[0_30px_100px_rgba(0,0,0,0.38)] backdrop-blur-md transition-[opacity,transform,background-color,border-color,box-shadow] duration-[800ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-2 hover:border-[#f2ede5]/18 hover:bg-[#171519]/84 hover:shadow-[22px_34px_100px_rgba(0,0,0,0.56)] md:p-8 ${
+              formVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+            }`}
+          >
+            <div className="grid gap-5 sm:grid-cols-2">
+              <label className="block font-sans text-sm font-medium text-[#f2ede5]">
+                Nama
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Nama kamu"
+                  className="mt-3 w-full rounded-2xl border border-[#f2ede5]/10 bg-[#0b0b0e]/70 px-5 py-4 font-sans text-base text-[#f2ede5] outline-none transition duration-[600ms] placeholder:text-[#a89e92]/45 focus:border-[#c8a96e]/45 focus:bg-[#0b0b0e] focus:shadow-[0_0_0_4px_rgba(200,169,110,0.08)]"
+                />
+              </label>
+
+              <label className="block font-sans text-sm font-medium text-[#f2ede5]">
+                Email
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="email@domain.com"
+                  className="mt-3 w-full rounded-2xl border border-[#f2ede5]/10 bg-[#0b0b0e]/70 px-5 py-4 font-sans text-base text-[#f2ede5] outline-none transition duration-[600ms] placeholder:text-[#a89e92]/45 focus:border-[#c8a96e]/45 focus:bg-[#0b0b0e] focus:shadow-[0_0_0_4px_rgba(200,169,110,0.08)]"
+                />
+              </label>
+            </div>
+
+            <label className="mt-6 block font-sans text-sm font-medium text-[#f2ede5]">
+              Pesan
+              <textarea
+                name="message"
+                rows={7}
+                placeholder="Ceritakan ide, kebutuhan, atau project yang ingin kamu bangun..."
+                className="mt-3 min-h-48 w-full resize-y rounded-[1.5rem] border border-[#f2ede5]/10 bg-[#0b0b0e]/70 px-5 py-5 font-sans text-base leading-8 text-[#f2ede5] outline-none transition duration-[600ms] placeholder:text-[#a89e92]/45 focus:border-[#c8a96e]/45 focus:bg-[#0b0b0e] focus:shadow-[0_0_0_4px_rgba(200,169,110,0.08)]"
+              />
+            </label>
+
+            <div className="mt-7 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+              <p className="max-w-sm font-sans text-sm leading-6 text-[#a89e92]">
+                Saya akan membalas pesan secepat mungkin melalui email yang kamu tulis.
+              </p>
+              <button
+                type="submit"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-[#c8a96e] px-6 py-4 font-sans text-sm font-semibold text-[#0b0b0e] shadow-[0_18px_50px_rgba(200,169,110,0.18)] transition duration-[600ms] hover:-translate-y-0.5 hover:bg-[#f2ede5]"
+              >
+                Kirim Pesan
+                <Send className="h-4 w-4" strokeWidth={1.8} />
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  )
+}

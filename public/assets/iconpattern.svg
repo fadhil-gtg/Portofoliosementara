@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 160 160">
+  <defs>
+    <pattern id="code" width="74" height="74" patternUnits="userSpaceOnUse">
+      <text
+        x="19"
+        y="25"
+        fill="white"
+        fill-opacity="0.48"
+        font-family="monospace"
+        font-size="17"
+        font-weight="700"
+        text-anchor="middle"
+        transform="rotate(-14 19 25)"
+      >&lt;/&gt;</text>
+      <text
+        x="56"
+        y="62"
+        fill="white"
+        fill-opacity="0.48"
+        font-family="monospace"
+        font-size="17"
+        font-weight="700"
+        text-anchor="middle"
+        transform="rotate(-14 56 62)"
+      >&lt;/&gt;</text>
+    </pattern>
+  </defs>
+  <rect width="160" height="160" fill="url(#code)" />
+</svg>

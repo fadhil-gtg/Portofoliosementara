@@ -1,0 +1,216 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ═══════════════════════════════════════════════════════════
+   GLOBAL STYLES — Premium Portfolio 2026
+   ═══════════════════════════════════════════════════════════ */
+
+:root {
+  /* Colors */
+  --color-paper: #FAFAF7;
+  --color-paper-1: #F3F3F0;
+  --color-paper-2: #E8E8E3;
+  --color-paper-3: #D4D4CC;
+  
+  --color-ink: #1A1A17;
+  --color-ink-1: #333330;
+  --color-ink-2: #4D4D4A;
+  --color-ink-3: #666662;
+
+  /* Typography */
+  --font-display: 'Fraunces', serif;
+  --font-sans: 'Inter', sans-serif;
+  --font-mono: 'Space Mono', monospace;
+
+  /* Spacing */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 2rem;
+  --space-lg: 4rem;
+  --space-xl: 8rem;
+
+  /* Animation */
+  --duration-fast: 200ms;
+  --duration-base: 600ms;
+  --duration-slow: 800ms;
+  --duration-extra-slow: 1000ms;
+
+  --easing-in-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --easing-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --easing-in: cubic-bezier(0.4, 0, 1, 1);
+}
+
+/* Base styles */
+* {
+  @apply box-border;
+}
+
+html {
+  scroll-behavior: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  
+  /* Hide scrollbar globally */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+/* Hide scrollbar for Chrome/Safari/Opera */
+html::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  @apply font-sans;
+  background: #0b0b0e;
+  color: #f2ede5;
+  line-height: 1.6;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+main {
+  isolation: isolate;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  @apply font-display font-bold;
+  line-height: 1.05;
+  letter-spacing: -0.045em;
+}
+
+h1 { @apply text-5xl; }
+h2 { @apply text-4xl; }
+h3 { @apply text-2xl; }
+
+p {
+  @apply text-ink-2;
+}
+
+section > div > p,
+article p {
+  max-width: 72ch;
+}
+
+a {
+  color: inherit;
+  transition: color var(--duration-base) var(--easing-out),
+    background-color var(--duration-base) var(--easing-out),
+    border-color var(--duration-base) var(--easing-out),
+    transform var(--duration-base) var(--easing-out),
+    opacity var(--duration-base) var(--easing-out);
+}
+
+/* Utilities */
+.container {
+  @apply max-w-7xl mx-auto px-6;
+}
+
+.section-label {
+  @apply text-xs font-mono tracking-widest uppercase text-ink-3;
+}
+
+.section-title {
+  @apply text-4xl md:text-5xl font-display font-bold mt-4;
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes logoLoop {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-33.333%, 0, 0);
+  }
+}
+
+.logo-loop-track {
+  animation-name: logoLoop;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.logo-loop-track:hover {
+  animation-play-state: paused;
+}
+
+.animate-fade-in {
+  animation: fadeIn var(--duration-base) var(--easing-out) forwards;
+}
+
+.animate-slide-up {
+  animation: slideUp var(--duration-base) var(--easing-out) forwards;
+}
+
+.animate-slide-in-left {
+  animation: slideInFromLeft var(--duration-base) var(--easing-out) forwards;
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Selection */
+::selection {
+  @apply bg-ink-1 text-paper;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-paper-3);
+  border-radius: 4px;
+
+  &:hover {
+    background: var(--color-paper-2);
+  }
+}

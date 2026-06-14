@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Reset padding/margins for react specific resets if any */
+#react-splash-cursor-root {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 10; /* Above background, below content */
+}
+
+/* Base override for ProfileCard from React Bits if it uses white backgrounds etc */
+.profile-card-container {
+  /* It might need some overrides to fit dark theme */
+}

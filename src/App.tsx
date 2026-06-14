@@ -1,6 +1,7 @@
 import { BackToTop } from './components/BackToTop'
 import { Footer } from './components/Footer'
 import { GlobalRibbons } from './components/GlobalRibbons/GlobalRibbons'
+import { GlobalStaggeredMenu } from './components/GlobalStaggeredMenu/GlobalStaggeredMenu'
 import { Navbar } from './components/Navbar'
 import { ClickSpark } from './components/ReactBits'
 import { SmoothScroll } from './components/SmoothScroll'
@@ -16,6 +17,7 @@ import { Skills } from './sections/Skills/Skills'
 function App() {
   return (
     <>
+      <GlobalStaggeredMenu />
       <SplashScreen duration={2.5} />
       <SmoothScroll>
         <ClickSpark sparkColor="#c8a96e" sparkSize={10} sparkRadius={18} sparkCount={8} duration={420}>

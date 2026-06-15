@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useCallback, useMemo } from 'react';
+import React, { useEffect, useRef, useCallback, useMemo, useState } from 'react';
 import './ProfileCard.css';
 
 const DEFAULT_INNER_GRADIENT = 'linear-gradient(145deg,#60496e8c 0%,#71C4FF44 100%)';
@@ -36,6 +36,8 @@ interface ProfileCardProps {
   contactText?: string;
   showUserInfo?: boolean;
   onContactClick?: () => void;
+  onDownloadClick?: () => void;
+  downloadText?: string;
 }
 
 const ProfileCardComponent: React.FC<ProfileCardProps> = ({
@@ -57,7 +59,9 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
   status = 'Open to collaborate',
   contactText = 'Contact',
   showUserInfo = true,
-  onContactClick
+  onContactClick,
+  onDownloadClick,
+  downloadText = 'Download CV'
 }) => {
   const wrapRef = useRef<HTMLDivElement>(null);
   const shellRef = useRef<HTMLDivElement>(null);
@@ -322,6 +326,15 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
     onContactClick?.();
   }, [onContactClick]);
 
+  const [downloaded, setDownloaded] = useState(false);
+
+  const handleDownload = useCallback(() => {
+    if (downloaded) return;
+    onDownloadClick?.();
+    setDownloaded(true);
+    setTimeout(() => setDownloaded(false), 2400);
+  }, [onDownloadClick, downloaded]);
+
   return (
     <div ref={wrapRef} className={`pc-card-wrapper ${className}`.trim()} style={cardStyle}>
       {behindGlowEnabled && <div className="pc-behind" />}
@@ -361,15 +374,42 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
                       <div className="pc-status">{status}</div>
                     </div>
                   </div>
-                  <button
-                    className="pc-contact-btn"
-                    onClick={handleContactClick}
-                    style={{ pointerEvents: 'auto' }}
-                    type="button"
-                    aria-label={`Contact ${name || 'user'}`}
-                  >
-                    {contactText}
-                  </button>
+                  {onDownloadClick ? (
+                    <button
+                      className={`pc-download-btn${downloaded ? ' pc-download-btn--success' : ''}`}
+                      onClick={handleDownload}
+                      style={{ pointerEvents: 'auto' }}
+                      type="button"
+                      aria-label={downloaded ? 'Downloaded' : `Download CV of ${name || 'user'}`}
+                    >
+                      <span className="pc-download-btn__icon" aria-hidden="true">
+                        {downloaded ? (
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                            <polyline points="20 6 9 17 4 12" />
+                          </svg>
+                        ) : (
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                            <polyline points="7 10 12 15 17 10" />
+                            <line x1="12" y1="15" x2="12" y2="3" />
+                          </svg>
+                        )}
+                      </span>
+                      <span className="pc-download-btn__label">
+                        {downloaded ? 'Downloaded' : downloadText}
+                      </span>
+                    </button>
+                  ) : (
+                    <button
+                      className="pc-contact-btn"
+                      onClick={handleContactClick}
+                      style={{ pointerEvents: 'auto' }}
+                      type="button"
+                      aria-label={`Contact ${name || 'user'}`}
+                    >
+                      {contactText}
+                    </button>
+                  )}
                 </div>
               )}
             </div>

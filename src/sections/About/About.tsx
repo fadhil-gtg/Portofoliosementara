@@ -74,9 +74,9 @@ export function About({ language = 'en' }: { language?: Language }) {
           <aside className="lg:sticky lg:top-24 lg:self-start lg:pt-4">
             <ProfileCard
               name="Adhika Fadhil"
-              title="Full Stack Developer"
+              title="Front End Developer"
               handle="adhikafadhil"
-              status={language === 'id' ? 'Terbuka untuk kolaborasi' : 'Open to collaborate'}
+              status="Available"
               contactText={language === 'id' ? 'Hubungi Saya' : 'Contact Me'}
               behindGlowEnabled={false}
               showUserInfo={true}
@@ -86,6 +86,8 @@ export function About({ language = 'en' }: { language?: Language }) {
               enableTilt={true}
               enableMobileTilt={false}
               onContactClick={handleContactClick}
+              onDownloadClick={handleCVDownload}
+              downloadText={downloadText}
               className="mx-auto max-w-[390px] lg:mx-0"
             />
           </aside>
@@ -109,19 +111,6 @@ export function About({ language = 'en' }: { language?: Language }) {
                   {paragraph}
                 </ScrollReveal>
               ))}
-            </div>
-
-            <div className="mt-2">
-              <button
-                onClick={handleCVDownload}
-                className="inline-flex items-center gap-2 rounded-lg border border-[#c8a96e]/30 bg-[#c8a96e]/10 px-6 py-3 font-sans text-sm font-medium text-[#c8a96e] transition hover:bg-[#c8a96e]/20 hover:border-[#c8a96e]/50 focus:outline-none focus:ring-2 focus:ring-[#c8a96e]/50"
-                type="button"
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                </svg>
-                {downloadText}
-              </button>
             </div>
           </div>
         </div>

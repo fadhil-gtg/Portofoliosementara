@@ -65,13 +65,13 @@ export function About({ language = 'en' }: { language?: Language }) {
   return (
     <section
       id="about"
-      className="relative min-h-screen overflow-hidden bg-transparent px-6 py-32 text-paper md:px-10 md:py-40 lg:px-12 lg:py-48"
+      className="relative overflow-hidden bg-transparent px-6 pt-16 pb-20 text-paper md:px-10 md:pt-20 md:pb-24 lg:px-12 lg:pt-24 lg:pb-28"
     >
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-[36rem] bg-[radial-gradient(ellipse_at_18%_20%,rgba(200,169,110,0.055),transparent_68%)] blur-3xl" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-80 bg-[radial-gradient(ellipse_at_18%_20%,rgba(200,169,110,0.055),transparent_68%)] blur-3xl" />
 
       <div className="relative mx-auto max-w-7xl">
-        <div className="grid gap-14 lg:grid-cols-[minmax(280px,390px)_1fr] lg:gap-20 xl:gap-28">
-          <aside className="lg:sticky lg:top-20 lg:self-start lg:pt-28">
+        <div className="grid gap-10 lg:grid-cols-[minmax(280px,390px)_1fr] lg:gap-14 xl:gap-18">
+          <aside className="lg:sticky lg:top-24 lg:self-start lg:pt-4">
             <ProfileCard
               name="Adhika Fadhil"
               title="Full Stack Developer"
@@ -90,7 +90,7 @@ export function About({ language = 'en' }: { language?: Language }) {
             />
           </aside>
 
-          <div className="flex flex-col gap-12 lg:pt-0">
+          <div className="flex flex-col gap-8 lg:pt-0">
             <BlurText
               text="Who Am I?"
               delay={70}
@@ -99,7 +99,7 @@ export function About({ language = 'en' }: { language?: Language }) {
 
             <div className="h-px w-24 bg-gradient-to-r from-[#c8a96e] via-[#c8a96e]/45 to-transparent" />
 
-            <div className="flex max-w-2xl flex-col gap-7">
+            <div className="flex max-w-2xl flex-col gap-5">
               {aboutDescription.map((paragraph) => (
                 <ScrollReveal
                   key={paragraph}
@@ -111,7 +111,7 @@ export function About({ language = 'en' }: { language?: Language }) {
               ))}
             </div>
 
-            <div className="mt-6">
+            <div className="mt-2">
               <button
                 onClick={handleCVDownload}
                 className="inline-flex items-center gap-2 rounded-lg border border-[#c8a96e]/30 bg-[#c8a96e]/10 px-6 py-3 font-sans text-sm font-medium text-[#c8a96e] transition hover:bg-[#c8a96e]/20 hover:border-[#c8a96e]/50 focus:outline-none focus:ring-2 focus:ring-[#c8a96e]/50"
@@ -137,7 +137,7 @@ export function About({ language = 'en' }: { language?: Language }) {
           fadeOut
           fadeOutColor="#0b0b0e"
           ariaLabel="Technology stack"
-          className="mt-20 md:mt-24"
+          className="mt-14 md:mt-16"
         />
       </div>
     </section>

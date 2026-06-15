@@ -1,5 +1,4 @@
 import { BackToTop } from './components/BackToTop'
-import { Footer } from './components/Footer'
 import { GlobalRibbons } from './components/GlobalRibbons/GlobalRibbons'
 import { GlobalStaggeredMenu } from './components/GlobalStaggeredMenu/GlobalStaggeredMenu'
 import { Navbar, type Language } from './components/Navbar'
@@ -43,7 +42,6 @@ function App() {
               <Experience language={language} />
               <Projects language={language} />
               <Contact language={language} />
-              <Footer />
             </div>
           </div>
         </ClickSpark>

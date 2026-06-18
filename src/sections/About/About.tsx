@@ -51,7 +51,7 @@ export function About({ language = 'en' }: { language?: Language }) {
   }
 
   const handleCVDownload = () => {
-    const cvUrl = language === 'id' ? '/assets/frames/Indo.pdf' : '/assets/frames/Adhika-english.pdf'
+    const cvUrl = language === 'id' ? '/assets/frames/Adhika-Idcv.pdf' : '/assets/frames/Adhika-encv.pdf'
     const link = document.createElement('a')
     link.href = cvUrl
     link.download = language === 'id' ? 'CV-Adhika-Fadhil-ID.pdf' : 'CV-Adhika-Fadhil-EN.pdf'

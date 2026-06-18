@@ -96,13 +96,13 @@ export function Contact({ language = 'en' }: { language?: Language }) {
   return (
     <section
       id="contact"
-      className="relative overflow-hidden bg-transparent px-6 py-32 text-[#f2ede5] md:px-10 md:py-40 lg:px-12 lg:py-48"
+      className="relative overflow-hidden bg-transparent px-6 py-20 text-[#f2ede5] md:px-10 md:py-24 lg:px-12 lg:py-28"
     >
       <div className="pointer-events-none absolute left-1/2 top-20 h-[36rem] w-[58rem] -translate-x-1/2 rounded-full bg-[#c8a96e]/[0.04] blur-3xl" />
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-[#0b0b0e]/45" />
 
       <div className="relative mx-auto max-w-7xl">
-        <div className="grid gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:items-start lg:gap-20 xl:gap-28">
+        <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start lg:gap-14 xl:gap-18">
           <div>
           <BlurText
             text={language === 'id' ? 'Punya Proyek? Mari Kita Wujudkan.' : 'Have a Project? Let\'s Make It Happen.'}

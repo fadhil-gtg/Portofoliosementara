@@ -258,7 +258,7 @@ export function Skills({ language = 'en' }: { language?: Language }) {
   return (
     <section
       id="skills"
-      className="relative overflow-hidden bg-transparent px-6 py-32 text-[#f2ede5] md:px-10 md:py-40 lg:px-12 lg:py-48"
+      className="relative overflow-hidden bg-transparent px-6 py-20 text-[#f2ede5] md:px-10 md:py-24 lg:px-12 lg:py-28"
     >
       <div className="pointer-events-none absolute left-1/2 top-24 h-[32rem] w-[54rem] -translate-x-1/2 rounded-full bg-[#c8a96e]/[0.04] blur-3xl" />
 
@@ -272,7 +272,7 @@ export function Skills({ language = 'en' }: { language?: Language }) {
           <div className="mt-8 h-px w-28 bg-gradient-to-r from-[#c8a96e] via-[#c8a96e]/45 to-transparent" />
         </div>
 
-        <div className="mt-20 grid gap-4 sm:grid-cols-2 md:mt-24 md:gap-5 lg:grid-cols-3 xl:grid-cols-4">
+        <div className="mt-14 grid gap-4 sm:grid-cols-2 md:mt-16 md:gap-5 lg:grid-cols-3 xl:grid-cols-4">
           {skills.map((skill) => (
             <SkillCard key={skill.name} skill={skill} language={language} />
           ))}

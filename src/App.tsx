@@ -6,20 +6,41 @@ import { ClickSpark } from './components/ReactBits'
 import { SmoothScroll } from './components/SmoothScroll'
 import { SplashScreen } from './components/SplashScreen'
 import { Contact } from './sections/Contact'
-// import { Intro } from './sections/Intro/Intro' // Removed - replaced by SplashScreen
 import { About } from './sections/About'
 import { Experience } from './sections/Experience'
 import { Projects } from './sections/Projects'
 import { ScrollSequence } from './sections/ScrollSequence/ScrollSequence'
 import { Skills } from './sections/Skills/Skills'
-import { useCallback, useState } from 'react'
+import { ProjectDetail } from './sections/Projects/ProjectDetail'
+import { useCallback, useEffect, useState } from 'react'
+import { Routes, Route } from 'react-router-dom'
 
-function App() {
-  const [language, setLanguage] = useState<Language>('en')
-
-  const handleLanguageChange = useCallback((lang: Language) => {
-    setLanguage(lang)
+function PortfolioHome({ language, onLanguageChange }: { language: Language; onLanguageChange: (lang: Language) => void }) {
+  useEffect(() => {
+    if (sessionStorage.getItem('scrollToProjects') === 'true') {
+      sessionStorage.removeItem('scrollToProjects')
+      let attempts = 0
+      const tryScroll = () => {
+        attempts++
+        const el = document.getElementById('projects')
+        // Keep polling until both element AND Lenis are ready (max 5s)
+        if ((!el || !window.portfolioLenis) && attempts < 50) {
+          setTimeout(tryScroll, 100)
+          return
+        }
+        if (el && window.portfolioLenis) {
+          // Extra frame so Lenis finishes internal layout calculations
+          requestAnimationFrame(() => {
+            window.portfolioLenis!.scrollTo(el, { offset: 0, immediate: true })
+          })
+        } else if (el) {
+          el.scrollIntoView({ behavior: 'auto', block: 'start' })
+        }
+      }
+      setTimeout(tryScroll, 500)
+    }
   }, [])
+
   return (
     <>
       <GlobalStaggeredMenu />
@@ -33,9 +54,8 @@ function App() {
             <GlobalRibbons />
             <div className="relative z-10">
               <div id="top" />
-              <Navbar language={language} onLanguageChange={handleLanguageChange} />
+              <Navbar language={language} onLanguageChange={onLanguageChange} />
               <BackToTop />
-              {/* Intro removed - SplashScreen replaces it */}
               <ScrollSequence />
               <About language={language} />
               <Skills language={language} />
@@ -47,6 +67,24 @@ function App() {
         </ClickSpark>
       </SmoothScroll>
     </>
+  )
+}
+
+function App() {
+  const [language, setLanguage] = useState<Language>('en')
+
+  const handleLanguageChange = useCallback((lang: Language) => {
+    setLanguage(lang)
+  }, [])
+
+  return (
+    <Routes>
+      <Route
+        path="/"
+        element={<PortfolioHome language={language} onLanguageChange={handleLanguageChange} />}
+      />
+      <Route path="/project/:slug" element={<ProjectDetail language={language} />} />
+    </Routes>
   )
 }
 

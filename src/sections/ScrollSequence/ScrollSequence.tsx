@@ -180,7 +180,8 @@ export function ScrollSequence() {
       />
 
       {/* Gradient transition to About section */}
-      <div className="pointer-events-none absolute bottom-0 left-0 right-0 z-10 h-64 bg-gradient-to-b from-transparent via-[#0b0b0e]/45 to-[#0b0b0e]" />
+      <div className="pointer-events-none absolute bottom-0 left-0 right-0 z-10 h-80 bg-gradient-to-b from-transparent via-[#0b0b0e]/50 to-[#0b0b0e]" />
+      <div className="pointer-events-none absolute bottom-0 left-0 right-0 z-10 h-48 bg-gradient-to-b from-transparent via-[rgba(200,169,110,0.025)] to-[rgba(200,169,110,0.04)]" />
 
       <div className="absolute inset-0 pointer-events-none">
         <div ref={wordDesignRef} className="word-design absolute top-[15%] left-[10%] opacity-0 font-display text-6xl font-normal italic tracking-tight text-[#c8a96e] [font-variation-settings:'WONK'_1] md:text-8xl lg:text-9xl">

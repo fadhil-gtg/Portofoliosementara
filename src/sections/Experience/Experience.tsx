@@ -151,7 +151,7 @@ export function Experience({ language = 'en' }: { language?: Language }) {
   return (
     <section
       id="experience"
-      className="relative overflow-hidden bg-transparent px-6 py-32 text-[#f2ede5] md:px-10 md:py-40 lg:px-12 lg:py-48"
+      className="relative overflow-hidden bg-transparent px-6 py-20 text-[#f2ede5] md:px-10 md:py-24 lg:px-12 lg:py-28"
     >
       <div className="pointer-events-none absolute right-0 top-24 h-[34rem] w-[56rem] rounded-full bg-[#f2ede5]/[0.018] blur-3xl" />
       <div className="pointer-events-none absolute left-0 bottom-0 h-[28rem] w-[48rem] rounded-full bg-[#c8a96e]/[0.035] blur-3xl" />
@@ -166,14 +166,14 @@ export function Experience({ language = 'en' }: { language?: Language }) {
           <div className="mt-8 h-px w-28 bg-gradient-to-r from-[#c8a96e] via-[#c8a96e]/45 to-transparent" />
         </div>
 
-        <div ref={timelineRef} className="relative mx-auto mt-20 max-w-6xl md:mt-24">
+        <div ref={timelineRef} className="relative mx-auto mt-14 max-w-6xl md:mt-16">
           <div className="absolute bottom-0 left-5 top-0 w-px bg-[#f2ede5]/10 md:left-1/2 md:-translate-x-1/2" />
           <div
             ref={lineRef}
             className="absolute bottom-0 left-5 top-0 w-px origin-top scale-y-0 bg-gradient-to-b from-[#c8a96e] via-[#c8a96e]/70 to-[#c8a96e]/25 transition-transform duration-[120ms] ease-out md:left-1/2 md:-translate-x-1/2"
           />
 
-          <div className="relative flex flex-col gap-14 md:gap-18 lg:gap-20">
+          <div className="relative flex flex-col gap-10 md:gap-12 lg:gap-14">
             {timelineItems.map((item, index) => (
               <TimelineEntry key={item.title} item={item} index={index} language={language} />
             ))}

@@ -10,6 +10,16 @@ export function SplashScreen({ duration = 2.5, onComplete }: SplashScreenProps) 
   const [isVisible, setIsVisible] = useState(true)
 
   useEffect(() => {
+    // Skip splash if returning from project detail
+    const skipSplash = sessionStorage.getItem('skipSplash') === 'true'
+    if (skipSplash) {
+      sessionStorage.removeItem('skipSplash')
+      document.body.style.overflow = ''
+      setIsVisible(false)
+      onComplete?.()
+      return
+    }
+
     // Prevent scrolling while splash is visible
     document.body.style.overflow = 'hidden'
 

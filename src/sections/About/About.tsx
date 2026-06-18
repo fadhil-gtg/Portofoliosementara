@@ -67,7 +67,13 @@ export function About({ language = 'en' }: { language?: Language }) {
       id="about"
       className="relative overflow-hidden bg-transparent px-6 pt-16 pb-20 text-paper md:px-10 md:pt-20 md:pb-24 lg:px-12 lg:pt-24 lg:pb-28"
     >
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-80 bg-[radial-gradient(ellipse_at_18%_20%,rgba(200,169,110,0.055),transparent_68%)] blur-3xl" />
+      {/* Subtle warm pickup from hero */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[rgba(200,169,110,0.02)] via-[rgba(200,169,110,0.006)] to-transparent" />
+      {/* Very faint ambient glow */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-64 bg-[radial-gradient(ellipse_at_18%_20%,rgba(200,169,110,0.025),transparent_68%)] blur-3xl" />
+      {/* Minimal bottom fade */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[rgba(200,169,110,0.012)] via-[rgba(200,169,110,0.004)] to-transparent" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#0b0b0e]/20 to-transparent" />
 
       <div className="relative mx-auto max-w-7xl">
         <div className="grid gap-10 lg:grid-cols-[minmax(280px,390px)_1fr] lg:gap-14 xl:gap-18">

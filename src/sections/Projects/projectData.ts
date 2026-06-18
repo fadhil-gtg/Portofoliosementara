@@ -10,6 +10,8 @@ export interface ProjectData {
   demoUrl: string
   accent: string
   imageUrl: string
+  cinematic: string
+  cinematicId: string
   features: string[]
   featuresId: string[]
   longDescription: string
@@ -19,135 +21,151 @@ export interface ProjectData {
 export const projectsData: ProjectData[] = [
   {
     slug: 'portfolio-motion-system',
-    title: 'Portfolio Motion System',
+    title: 'Komdigi',
     description:
-      'A cinematic portfolio experience with scroll-driven storytelling, animated sections, responsive layouts, and refined interaction design.',
+      'I built a replica of the official website of Indonesia\'s Ministry of Communication and Digital Affairs with my team. The site covers current news, public services, digital transformation, and performance reports \u2014 completed as a group project for the TKJ4 class.',
     descriptionId:
-      'Pengalaman portfolio sinematik dengan storytelling berbasis scroll, section animatif, layout responsif, dan interaction design yang rapi.',
-    stack: ['React', 'TypeScript', 'Tailwind CSS', 'Vite', 'GSAP'],
+      'Saya membangun replika website resmi Kementerian Komunikasi dan Digital RI bersama tim. Situs ini mencakup fitur berita terkini, layanan publik, transformasi digital, dan laporan kinerja \u2014 dikerjakan sebagai proyek kelompok kelas TKJ4.',
+    stack: ['HTML', 'CSS', 'JavaScript', 'Team Project'],
     githubUrl: 'https://github.com/',
-    demoUrl: '#top',
+    demoUrl: 'https://fadhil-gtg.github.io/komdigi-tkj4-klmpk3/',
     accent: 'from-[#FAFAF7] via-[#E8E8E3] to-[#9B9B8F]',
     imageUrl: '/assets/logos/Komdigi1.png',
+    cinematic:
+      'A full-scale government portal experience \u2014 multi-page architecture, structured navigation, and a civic digital identity rebuilt from the ground up.',
+    cinematicId:
+      'Pengalaman portal pemerintahan berskala penuh \u2014 arsitektur multi-halaman, navigasi terstruktur, dan identitas digital pemerintahan yang dibangun dari nol.',
     features: [
-      'Scroll-driven cinematic animation with 217-frame canvas sequence',
-      'GSAP ScrollTrigger integration for precise scroll-based storytelling',
-      'Lenis smooth scroll for buttery 60fps navigation',
-      'Interactive 3D profile card with tilt & glare effects',
-      'Bilingual support (English & Indonesian)',
-      'Fully responsive across all breakpoints',
+      'Multi-page government portal with structured site architecture',
+      'Multi-level dropdown navigation across 5 main menu categories',
+      'News & media hub covering press releases, hoax clarifications, and photo galleries',
+      'Public service pages including scholarships, licensing, and emergency call 112',
+      'Performance report section with financial, annual, and service documentation',
+      'Digital transformation coverage across infrastructure, economy, and cybersecurity',
     ],
     featuresId: [
-      'Animasi sinematik berbasis scroll dengan 217 frame canvas',
-      'Integrasi GSAP ScrollTrigger untuk storytelling presisi',
-      'Lenis smooth scroll untuk navigasi 60fps yang halus',
-      'Kartu profil 3D interaktif dengan efek tilt & glare',
-      'Dukungan bilingual (Inggris & Indonesia)',
-      'Responsif di semua ukuran layar',
+      'Portal pemerintahan multi-halaman dengan arsitektur situs terstruktur',
+      'Navigasi dropdown multi-level di 5 kategori menu utama',
+      'Hub berita & media mencakup siaran pers, klarifikasi hoaks, dan galeri foto',
+      'Halaman layanan publik termasuk beasiswa, perizinan, dan panggilan darurat 112',
+      'Bagian laporan kinerja dengan dokumentasi keuangan, tahunan, dan pelayanan',
+      'Liputan transformasi digital mencakup infrastruktur, ekonomi, dan keamanan siber',
     ],
     longDescription:
-      'This portfolio is a cinematic web experience designed to showcase skills and projects through scroll-driven storytelling. Built with React, TypeScript, and GSAP, it features a 217-frame canvas animation sequence, smooth Lenis scrolling, interactive 3D elements, and a carefully crafted dark premium theme with gold accents. Every section transition, hover effect, and layout decision was refined for a polished, professional feel.',
+      'I worked on this project with 6 team members as a group assignment for the TKJ4 class. The site consists of multiple pages covering various features such as News (press releases, hoax clarifications, photos, videos, magazines), Team Member Profiles, Performance Reports (financial, annual, service), Public Services (certification, scholarships, licensing, emergency call 112), and a Digital Transformation page discussing infrastructure, economy, and cybersecurity. All pages were built manually using pure HTML and CSS without any framework, with multi-level dropdown navigation that mirrors the structure of the actual government site.',
     longDescriptionId:
-      'Portfolio ini adalah pengalaman web sinematik yang dirancang untuk menampilkan skill dan proyek melalui storytelling berbasis scroll. Dibangun dengan React, TypeScript, dan GSAP, featuring animasi canvas 217 frame, scroll Lenis yang halus, elemen 3D interaktif, dan tema dark premium dengan aksen gold yang dirancang dengan cermat. Setiap transisi section, efek hover, dan keputusan layout disempurnakan untuk tampilan yang profesional.',
+      'Proyek ini saya kerjakan bersama 6 anggota tim sebagai tugas kelompok kelas TKJ4. Situs terdiri dari banyak halaman yang mencakup berbagai fitur seperti halaman Berita (siaran pers, klarifikasi hoaks, foto, video, majalah), halaman Profil anggota tim, Laporan Kinerja (keuangan, tahunan, pelayanan), Layanan publik (sertifikasi, beasiswa, perizinan, panggilan darurat 112), hingga halaman Transformasi Digital yang membahas infrastruktur, ekonomi, dan keamanan siber. Seluruh halaman dibangun secara manual menggunakan HTML dan CSS murni tanpa framework, dengan navigasi dropdown multi-level yang menyerupai struktur situs pemerintah asli.',
   },
   {
     slug: 'linux-server-lab',
-    title: 'Linux Server Lab',
+    title: 'Radnet Digital Indonesia',
     description:
-      'A practical system administration lab focused on Linux services, permissions, package workflows, shell tooling, and reliable maintenance habits.',
+      'I designed and developed a company profile website for PT Radnet Digital Indonesia. The site showcases their flagship services including EzySky, Internet Security, and RadneXt Internet, along with partner information and company contacts.',
     descriptionId:
-      'Lab administrasi sistem praktis yang fokus pada service Linux, permission, package workflow, shell tooling, dan kebiasaan maintenance yang andal.',
-    stack: ['Linux', 'Docker', 'Networking', 'Shell', 'Ansible'],
+      'Saya merancang dan mengembangkan website company profile untuk PT Radnet Digital Indonesia. Situs ini menampilkan layanan unggulan seperti EzySky, Internet Security, dan RadneXt Internet, beserta informasi mitra dan kontak perusahaan.',
+    stack: ['HTML', 'CSS', 'JavaScript', 'Company Profile'],
     githubUrl: 'https://github.com/',
-    demoUrl: '#experience',
+    demoUrl: 'https://fadhil-gtg.github.io/Company-profile/',
     accent: 'from-[#D8E6FF] via-[#90B7FF] to-[#26324D]',
     imageUrl: '/assets/logos/PT2.png',
+    cinematic:
+      'A sleek corporate presence brought to life \u2014 professional layout, service-focused storytelling, and a digital face worthy of a multi-city technology company.',
+    cinematicId:
+      'Kehadiran korporat yang elegan dihidupkan \u2014 layout profesional, storytelling berfokus pada layanan, dan wajah digital yang layak untuk perusahaan teknologi multi-kota.',
     features: [
-      'Hands-on Linux service management and configuration',
-      'Docker containerization workflows for development environments',
-      'Ansible playbooks for automated server provisioning',
-      'Shell scripting utilities for daily maintenance tasks',
-      'Permission and user management best practices',
-      'Package management workflows across distributions',
+      'Clean corporate layout with professional service-focused storytelling',
+      'Three core service showcases \u2014 EzySky, Internet Security, and RadneXt Internet',
+      'Partner logo section featuring universities and vocational schools',
+      'Multi-city office directory covering Surabaya, Bandung, and Jakarta',
+      'Integrated WhatsApp CTA for direct client consultation',
+      'Social media links connected to LinkedIn, Facebook, and Instagram',
     ],
     featuresId: [
-      'Praktik langsung manajemen dan konfigurasi service Linux',
-      'Workflow containerization Docker untuk lingkungan development',
-      'Playbook Ansible untuk provisioning server otomatis',
-      'Utility shell scripting untuk tugas maintenance harian',
-      'Best practice manajemen permission dan user',
-      'Workflow package management lintas distribusi',
+      'Layout korporat bersih dengan storytelling berfokus pada layanan profesional',
+      'Tiga showcase layanan inti \u2014 EzySky, Internet Security, dan RadneXt Internet',
+      'Bagian logo mitra yang menampilkan universitas dan sekolah kejuruan',
+      'Direktori kantor multi-kota mencakup Surabaya, Bandung, dan Jakarta',
+      'Integrasi CTA WhatsApp untuk konsultasi klien langsung',
+      'Tautan media sosial terhubung ke LinkedIn, Facebook, dan Instagram',
     ],
     longDescription:
-      'Linux Server Lab is a practical learning environment focused on system administration. It covers essential Linux skills including service management, Docker containerization, Ansible automation, shell scripting, and package workflows. Each module is designed as a hands-on exercise that mirrors real-world server maintenance scenarios, building reliable habits for production environments.',
+      'I built this site as the official digital representation of PT Radnet Digital Indonesia, a company operating in connectivity services and digital solutions. The site includes a homepage showcasing three flagship services (EzySky, Internet Security, RadneXt Internet), an Employee page, and an About Us page with contact details and office locations in three cities \u2014 Surabaya, Bandung, and Jakarta. I also included official partner logos such as Unesa, SMKN 1 Surabaya, SMK Ketintang, and SMKN 6 Surabaya, along with direct WhatsApp button integration for client consultation.',
     longDescriptionId:
-      'Linux Server Lab adalah lingkungan belajar praktis yang fokus pada administrasi sistem. Mencakup skill Linux esensial termasuk manajemen service, containerization Docker, otomasi Ansible, shell scripting, dan workflow package. Setiap modul dirancang sebagai latihan hands-on yang mencerminkan skenario maintenance server dunia nyata.',
+      'Saya membangun situs ini sebagai representasi digital resmi PT Radnet Digital Indonesia, perusahaan yang bergerak di bidang layanan konektivitas dan solusi digital. Situs mencakup halaman utama yang menampilkan tiga layanan unggulan (EzySky, Internet Security, RadneXt Internet), halaman Karyawan, serta halaman Tentang Kami dengan detail kontak dan lokasi kantor di tiga kota \u2014 Surabaya, Bandung, dan Jakarta. Saya juga menyertakan logo mitra resmi perusahaan seperti Unesa, SMKN 1 Surabaya, SMK Ketintang, dan SMKN 6 Surabaya, serta integrasi tombol WhatsApp langsung untuk konsultasi klien.',
   },
   {
     slug: 'network-troubleshooting-kit',
-    title: 'Network Troubleshooting Kit',
+    title: 'ADHIKARACE',
     description:
-      'A learning-focused toolkit concept for documenting IP addressing, diagnostics, routing checks, and structured troubleshooting workflows.',
+      'I built my own sport motorcycle catalog website based in Surabaya. The site showcases premium brand lineups such as Ducati, BMW, Kawasaki, and Aprilia \u2014 complete with specifications, pricing, and WhatsApp purchasing.',
     descriptionId:
-      'Konsep toolkit pembelajaran untuk dokumentasi IP addressing, diagnostik, pengecekan routing, dan workflow troubleshooting terstruktur.',
-    stack: ['Networking', 'Linux', 'GitHub', 'Documentation'],
+      'Saya membangun website katalog toko motor sport milik saya sendiri yang berbasis di Surabaya. Situs ini menampilkan lineup dari brand premium seperti Ducati, BMW, Kawasaki, dan Aprilia \u2014 lengkap dengan spesifikasi, harga, dan pembelian via WhatsApp.',
+    stack: ['Google Sites', 'E-Commerce', 'Product Catalog'],
     githubUrl: 'https://github.com/',
-    demoUrl: '#skills',
+    demoUrl: 'https://www.adhikarace.my.id/',
     accent: 'from-[#F7E7C6] via-[#D8A85C] to-[#3A2A16]',
     imageUrl: '/assets/logos/adhikarace3.png',
+    cinematic:
+      'A live sport bike marketplace with real products, real prices, and real transactions \u2014 where premium brands like Ducati and BMW meet frictionless WhatsApp commerce.',
+    cinematicId:
+      'Marketplace motor sport live dengan produk nyata, harga nyata, dan transaksi nyata \u2014 tempat brand premium seperti Ducati dan BMW bertemu perdagangan WhatsApp tanpa hambatan.',
     features: [
-      'Structured IP addressing documentation and subnet calculators',
-      'Network diagnostic command reference with examples',
-      'Routing table analysis and troubleshooting workflows',
-      'Step-by-step OSI model troubleshooting methodology',
-      'Packet capture analysis guides using tcpdump and Wireshark',
-      'Version-controlled documentation with GitHub integration',
+      'Live product catalog spanning 8 premium motorcycle brands',
+      'Detailed technical specs per unit \u2014 power, torque, seat height, and engine size',
+      'One-tap WhatsApp purchase with auto-filled brand and model message',
+      'Customer testimonial section with real buyer reviews',
+      'Custom domain with dedicated FAQ and privacy policy pages',
+      'Multi-platform social presence across Instagram, YouTube, and TikTok',
     ],
     featuresId: [
-      'Dokumentasi IP addressing terstruktur dan subnet calculator',
-      'Referensi command diagnostik jaringan dengan contoh',
-      'Analisis routing table dan workflow troubleshooting',
-      'Metodologi troubleshooting model OSI langkah demi langkah',
-      'Panduan analisis packet capture dengan tcpdump dan Wireshark',
-      'Dokumentasi version-controlled dengan integrasi GitHub',
+      'Katalog produk live yang mencakup 8 brand motor premium',
+      'Spesifikasi teknis detail per unit \u2014 power, torsi, tinggi jok, dan kapasitas mesin',
+      'Pembelian satu ketuk via WhatsApp dengan pesan otomatis sesuai merk dan tipe',
+      'Bagian testimoni pelanggan dengan ulasan pembeli asli',
+      'Domain kustom dengan halaman FAQ dan kebijakan privasi khusus',
+      'Kehadiran sosial multi-platform di Instagram, YouTube, dan TikTok',
     ],
     longDescription:
-      'Network Troubleshooting Kit is a comprehensive learning toolkit designed for networking students and professionals. It provides structured documentation for IP addressing, diagnostic commands, routing analysis, and step-by-step troubleshooting workflows following the OSI model. The project emphasizes practical, real-world scenarios with clear documentation that can be referenced during actual network issues.',
+      'ADHIKARACE is my own sport motorcycle shop that I built from scratch using Google Sites with a custom domain at adhikarace.my.id. The site features a catalog of 8 premium motorcycle brands \u2014 Aprilia, Ducati, Honda, Yamaha, Suzuki, Triumph, BMW, and Kawasaki \u2014 each equipped with complete technical specifications including power (hp), torque (Nm), seat height, and engine capacity. Every product links directly to WhatsApp with auto-filled messages based on the brand and model. I also added buyer testimonial pages, FAQ, privacy policy, and connected Instagram, YouTube, and TikTok accounts as promotional channels.',
     longDescriptionId:
-      'Network Troubleshooting Kit adalah toolkit belajar komprehensif yang dirancang untuk siswa dan profesional networking. Menyediakan dokumentasi terstruktur untuk IP addressing, command diagnostik, analisis routing, dan workflow troubleshooting langkah demi langkah mengikuti model OSI. Proyek ini menekankan skenario praktis dunia nyata dengan dokumentasi jelas.',
+      'ADHIKARACE adalah toko motor sport milik saya yang saya bangun sendiri dari nol menggunakan Google Sites dengan domain kustom adhikarace.my.id. Situs ini menampilkan katalog dari 8 brand motor premium \u2014 Aprilia, Ducati, Honda, Yamaha, Suzuki, Triumph, BMW, dan Kawasaki \u2014 masing-masing dilengkapi spesifikasi teknis lengkap seperti power (hp), torque (Nm), seat height, dan kapasitas mesin. Setiap produk terhubung langsung ke WhatsApp dengan pesan otomatis sesuai merk dan tipe motor. Saya juga menambahkan halaman testimoni pembeli, FAQ, kebijakan privasi, dan menghubungkan akun Instagram, YouTube, serta TikTok sebagai saluran promosi.',
   },
   {
     slug: 'tkj-learning-hub',
-    title: 'TKJ Learning Hub',
+    title: 'Server Monitoring Dashboard',
     description:
-      'A structured learning space for collecting networking notes, Linux commands, web experiments, and practical technical references.',
+      'I led a team as Project Manager in building a DevOps-based server monitoring service for small and medium enterprises. The system monitors CPU, RAM, Disk, and network performance in real-time using Prometheus, Docker, and Node Exporter.',
     descriptionId:
-      'Ruang belajar terstruktur untuk mengumpulkan catatan networking, command Linux, eksperimen web, dan referensi teknis praktis.',
-    stack: ['React', 'Tailwind CSS', 'Linux', 'Networking', 'Docs'],
+      'Saya memimpin tim sebagai Project Manager dalam membangun layanan monitoring server berbasis DevOps untuk UMKM. Sistem ini memantau performa CPU, RAM, Disk, dan jaringan secara real-time menggunakan Prometheus, Docker, dan Node Exporter.',
+    stack: ['Docker', 'Prometheus', 'DevOps', 'JavaScript', 'Linux'],
     githubUrl: 'https://github.com/',
-    demoUrl: '#contact',
+    demoUrl: 'https://fadhil-gtg.github.io/ServerMonitoringDashboard/',
     accent: 'from-[#E8D7A8] via-[#C8A96E] to-[#2C2417]',
     imageUrl: '/assets/logos/monitoring4.png',
+    cinematic:
+      'A real-time DevOps command center \u2014 where Docker, Prometheus, and Node Exporter converge into a live dashboard that breathes with every server heartbeat.',
+    cinematicId:
+      'Pusat komando DevOps real-time \u2014 tempat Docker, Prometheus, dan Node Exporter bersatu dalam dashboard live yang berdenyut seiring setiap detak server.',
     features: [
-      'Organized note-taking system for TKJ curriculum topics',
-      'Linux command cheat sheets with practical examples',
-      'Web development experiment logs and code snippets',
-      'Networking concept visualizations and diagrams',
-      'Searchable reference library for quick lookups',
-      'Progress tracking across learning modules',
+      'Real-time monitoring of CPU, RAM, Disk, and network every 5 seconds',
+      'Docker-based deployment on Linux Ubuntu 22.04 LTS',
+      'Prometheus metrics collection integrated with Node Exporter v1.7.0',
+      'Interactive live charts powered by Chart.js v4',
+      'Dedicated client login page and interactive demo dashboard',
+      'Full team role documentation \u2014 PM, NOC Engineer, DevOps, and Sales',
     ],
     featuresId: [
-      'Sistem catatan terorganisir untuk topik kurikulum TKJ',
-      'Cheat sheet command Linux dengan contoh praktis',
-      'Log eksperimen web development dan code snippet',
-      'Visualisasi dan diagram konsep networking',
-      'Referensi library yang bisa dicari untuk lookup cepat',
-      'Tracking progress di seluruh modul pembelajaran',
+      'Monitoring real-time CPU, RAM, Disk, dan jaringan setiap 5 detik',
+      'Deployment berbasis Docker di Linux Ubuntu 22.04 LTS',
+      'Pengumpulan metrik Prometheus terintegrasi dengan Node Exporter v1.7.0',
+      'Grafik live interaktif menggunakan Chart.js v4',
+      'Halaman login klien khusus dan dashboard demo interaktif',
+      'Dokumentasi peran tim lengkap \u2014 PM, NOC Engineer, DevOps, dan Sales',
     ],
     longDescription:
-      'TKJ Learning Hub is a structured digital workspace built for Computer and Network Engineering students. It serves as a centralized repository for networking notes, Linux command references, web development experiments, and practical technical documentation. The platform is designed to make studying more efficient with organized categories, searchable content, and progress tracking across different learning modules.',
+      'I worked on this project as a PKWU (Creative Products and Entrepreneurship) assignment for the Computer and Network Engineering vocational major with 3 team members. I served as Project Manager \u2014 leading the project, assigning tasks, and ensuring all milestones were completed on time. The system works with the following flow: deploy Docker on Linux Ubuntu 22.04 \u2192 configure Prometheus for metrics scraping \u2192 NOC configures LAN network \u2192 dashboard displays real-time data every 5 seconds via the Prometheus API. The technology stack includes Docker, Prometheus, Node Exporter v1.7.0, Chart.js v4, HTML5, CSS3, and JavaScript ES2022. The site features a client login page, an interactive demo dashboard, and a landing page that thoroughly explains the service, technology, workflow, and team structure.',
     longDescriptionId:
-      'TKJ Learning Hub adalah workspace digital terstruktur yang dibangun untuk siswa Teknik Komputer dan Jaringan. Berfungsi sebagai repositori terpusat untuk catatan networking, referensi command Linux, eksperimen web development, dan dokumentasi teknis praktis. Platform ini dirancang untuk membuat belajar lebih efisien dengan kategori terorganisir dan tracking progress.',
+      'Proyek ini saya kerjakan sebagai tugas PKWU (Produk Kreatif dan Kewirausahaan) SMK jurusan TKJ bersama 3 anggota tim. Saya bertindak sebagai Project Manager \u2014 memimpin jalannya project, membagi tugas, dan memastikan semua tahap selesai tepat waktu. Sistem bekerja dengan alur: deploy Docker di Linux Ubuntu 22.04 \u2192 konfigurasi Prometheus untuk scraping metrics \u2192 konfigurasi jaringan LAN oleh NOC \u2192 dashboard menampilkan data real-time setiap 5 detik via Prometheus API. Stack teknologi yang digunakan meliputi Docker, Prometheus, Node Exporter v1.7.0, Chart.js v4, HTML5, CSS3, dan JavaScript ES2022. Situs memiliki halaman login client, halaman demo dashboard interaktif, serta landing page yang menjelaskan layanan, teknologi, cara kerja, dan struktur tim secara lengkap.',
   },
 ]
 
@@ -165,4 +183,8 @@ export function getProjectFeatures(project: ProjectData, language: Language): st
 
 export function getProjectLongDescription(project: ProjectData, language: Language): string {
   return language === 'id' ? project.longDescriptionId : project.longDescription
+}
+
+export function getProjectCinematic(project: ProjectData, language: Language): string {
+  return language === 'id' ? project.cinematicId : project.cinematic
 }

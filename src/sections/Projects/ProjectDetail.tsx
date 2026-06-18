@@ -1,7 +1,7 @@
 import { useParams, useNavigate } from 'react-router-dom'
-import { ArrowLeft, Check, ExternalLink, Github } from 'lucide-react'
+import { ArrowLeft, Check, ExternalLink } from 'lucide-react'
 import { useEffect } from 'react'
-import { getProjectBySlug, getProjectFeatures, getProjectLongDescription, getProjectDescription, projectsData } from './projectData'
+import { getProjectBySlug, getProjectFeatures, getProjectLongDescription, getProjectCinematic, projectsData } from './projectData'
 import type { Language } from '../../components/Navbar'
 
 export function ProjectDetail({ language = 'en' }: { language?: Language }) {
@@ -41,7 +41,7 @@ export function ProjectDetail({ language = 'en' }: { language?: Language }) {
 
   const features = getProjectFeatures(project, language)
   const longDescription = getProjectLongDescription(project, language)
-  const shortDescription = getProjectDescription(project, language)
+  const cinematic = getProjectCinematic(project, language)
   const currentIndex = projectsData.findIndex((p) => p.slug === slug)
   const nextProject = projectsData[(currentIndex + 1) % projectsData.length]
 
@@ -83,9 +83,9 @@ export function ProjectDetail({ language = 'en' }: { language?: Language }) {
 
         <div className="mt-6 h-px w-24 bg-gradient-to-r from-[#c8a96e] via-[#c8a96e]/45 to-transparent" />
 
-        {/* Short description */}
-        <p className="mt-8 max-w-3xl font-sans text-lg leading-9 text-[#a89e92] md:text-xl md:leading-10">
-          {shortDescription}
+        {/* Cinematic tagline */}
+        <p className="mt-8 max-w-3xl font-display text-xl italic leading-relaxed tracking-tight text-[#f2ede5]/75 md:text-2xl md:leading-relaxed">
+          &ldquo;{cinematic}&rdquo;
         </p>
 
         {/* Stack */}
@@ -133,17 +133,8 @@ export function ProjectDetail({ language = 'en' }: { language?: Language }) {
         {/* CTA buttons */}
         <div className="mt-14 flex flex-col gap-4 sm:flex-row">
           <a
-            href={project.githubUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center justify-center gap-2 rounded-full bg-[#f2ede5] px-7 py-4 font-sans text-sm font-semibold text-[#0b0b0e] shadow-[0_18px_50px_rgba(200,169,110,0.12)] transition duration-[600ms] hover:-translate-y-0.5 hover:bg-[#c8a96e]"
-          >
-            <Github className="h-4 w-4" strokeWidth={1.8} />
-            GitHub
-          </a>
-          <a
             href={project.demoUrl}
-            className="inline-flex items-center justify-center gap-2 rounded-full border border-[#f2ede5]/10 px-7 py-4 font-sans text-sm font-medium text-[#f2ede5] transition duration-[600ms] hover:-translate-y-0.5 hover:border-[#c8a96e]/35 hover:bg-[#c8a96e]/10"
+            className="inline-flex items-center justify-center gap-2 rounded-full bg-[#f2ede5] px-7 py-4 font-sans text-sm font-semibold text-[#0b0b0e] shadow-[0_18px_50px_rgba(200,169,110,0.12)] transition duration-[600ms] hover:-translate-y-0.5 hover:bg-[#c8a96e]"
           >
             <ExternalLink className="h-4 w-4" strokeWidth={1.8} />
             Live Demo

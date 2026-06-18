@@ -28,7 +28,7 @@ function ProjectCard({ project, index, language }: { project: ProjectData; index
   return (
     <article
       ref={ref}
-      className={`group overflow-hidden rounded-3xl border border-white/[0.06] bg-[#18181d] p-4 shadow-[0_16px_48px_rgba(0,0,0,0.18)] transition-[opacity,transform,border-color,box-shadow] duration-[800ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:border-[#c8a96e]/25 hover:shadow-[0_20px_60px_rgba(0,0,0,0.25)] ${
+      className={`group flex flex-col overflow-hidden rounded-3xl border border-white/[0.06] bg-[#18181d] p-4 shadow-[0_16px_48px_rgba(0,0,0,0.18)] transition-[opacity,transform,border-color,box-shadow] duration-[800ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:border-[#c8a96e]/25 hover:shadow-[0_20px_60px_rgba(0,0,0,0.25)] ${
         visible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
       }`}
       style={{ transitionDelay: `${Math.min(index * 110, 330)}ms` }}
@@ -48,12 +48,12 @@ function ProjectCard({ project, index, language }: { project: ProjectData; index
         <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
       </button>
 
-      <div className="p-6 md:p-7">
+      <div className="flex flex-1 flex-col p-6 md:p-7">
         <div className="flex items-start justify-between gap-5">
           <h3 className="max-w-lg text-4xl font-display font-semibold leading-tight tracking-tight text-[#f2ede5] md:text-5xl">
             {project.title}
           </h3>
-          <span className="hidden rounded-full border border-[#f2ede5]/10 bg-[#0b0b0e]/45 px-3 py-1.5 text-xs font-mono text-[#f2ede5]/58 sm:inline-flex">
+          <span className="hidden shrink-0 rounded-full border border-[#f2ede5]/10 bg-[#0b0b0e]/45 px-3 py-1.5 text-xs font-mono text-[#f2ede5]/58 sm:inline-flex">
             0{index + 1}
           </span>
         </div>
@@ -62,7 +62,7 @@ function ProjectCard({ project, index, language }: { project: ProjectData; index
           {getProjectDescription(project, language)}
         </p>
 
-        <div className="mt-7 flex flex-wrap gap-2">
+        <div className="mt-7 flex min-h-[2.25rem] flex-wrap gap-2">
           {project.stack.map((tech) => (
             <span
               key={tech}
@@ -73,7 +73,7 @@ function ProjectCard({ project, index, language }: { project: ProjectData; index
           ))}
         </div>
 
-        <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+        <div className="mt-auto flex flex-col gap-3 pt-8 sm:flex-row">
           <button
             type="button"
             onClick={() => navigate(`/project/${project.slug}`)}
@@ -115,7 +115,7 @@ export function Projects({ language = 'en' }: { language?: Language }) {
           <div className="mt-8 h-px w-20 bg-[rgba(200,169,110,0.6)]" />
         </div>
 
-        <div className="mt-14 grid gap-7 lg:mt-16 lg:grid-cols-2 xl:gap-8">
+        <div className="mt-14 grid items-stretch gap-7 lg:mt-16 lg:grid-cols-2 xl:gap-8">
           {projectsData.map((project, index) => (
             <ProjectCard key={project.title} project={project} index={index} language={language} />
           ))}

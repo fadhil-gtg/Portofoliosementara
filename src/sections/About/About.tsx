@@ -50,14 +50,24 @@ export function About({ language = 'en' }: { language?: Language }) {
     contactSection.scrollIntoView({ behavior: 'smooth' })
   }
 
-  const handleCVDownload = () => {
+  const handleCVDownload = async () => {
     const cvUrl = language === 'id' ? '/assets/frames/Adhika-Idcv.pdf' : '/assets/frames/Adhika-encv.pdf'
-    const link = document.createElement('a')
-    link.href = cvUrl
-    link.download = language === 'id' ? 'CV-Adhika-Fadhil-ID.pdf' : 'CV-Adhika-Fadhil-EN.pdf'
-    document.body.appendChild(link)
-    link.click()
-    document.body.removeChild(link)
+    const fileName = language === 'id' ? 'CV-Adhika-Fadhil-ID.pdf' : 'CV-Adhika-Fadhil-EN.pdf'
+    try {
+      const response = await fetch(cvUrl)
+      const blob = await response.blob()
+      const blobUrl = URL.createObjectURL(blob)
+      const link = document.createElement('a')
+      link.href = blobUrl
+      link.download = fileName
+      document.body.appendChild(link)
+      link.click()
+      document.body.removeChild(link)
+      URL.revokeObjectURL(blobUrl)
+    } catch {
+      // Fallback: open in new tab
+      window.open(cvUrl, '_blank')
+    }
   }
 
   const downloadText = language === 'id' ? 'Unduh CV' : 'Download CV'

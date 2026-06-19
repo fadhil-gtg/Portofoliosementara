@@ -4,7 +4,7 @@ import { GlobalStaggeredMenu } from './components/GlobalStaggeredMenu/GlobalStag
 import { Navbar, type Language } from './components/Navbar'
 import { ClickSpark } from './components/ReactBits'
 import { SmoothScroll } from './components/SmoothScroll'
-import { SplashScreen } from './components/SplashScreen'
+import SplashScreen from './components/SplashScreen'
 import { Contact } from './sections/Contact'
 import { About } from './sections/About'
 import { Experience } from './sections/Experience'
@@ -16,6 +16,8 @@ import { useCallback, useEffect, useState } from 'react'
 import { Routes, Route } from 'react-router-dom'
 
 function PortfolioHome({ language, onLanguageChange }: { language: Language; onLanguageChange: (lang: Language) => void }) {
+  const [showSplash, setShowSplash] = useState(true)
+
   useEffect(() => {
     if (sessionStorage.getItem('scrollToProjects') === 'true') {
       sessionStorage.removeItem('scrollToProjects')
@@ -44,7 +46,7 @@ function PortfolioHome({ language, onLanguageChange }: { language: Language; onL
   return (
     <>
       <GlobalStaggeredMenu />
-      <SplashScreen duration={2.5} />
+      {showSplash && <SplashScreen onFinish={() => setShowSplash(false)} />}
       <SmoothScroll>
         <ClickSpark sparkColor="#c8a96e" sparkSize={10} sparkRadius={18} sparkCount={8} duration={420}>
           <div className="relative min-h-screen overflow-hidden bg-[#0b0b0e]">

@@ -1,0 +1,109 @@
+/* SplashScreen.css
+   Custom keyframes that Tailwind's core utilities don't cover:
+   typing effect, blinking cursor, blur flash, blur-in entrance. */
+
+.splash-overlay {
+  opacity: 1;
+  transition: opacity 500ms ease;
+}
+.splash-overlay.splash-exit {
+  opacity: 0;
+}
+
+/* --- Terminal phase --- */
+
+.splash-type-line1 {
+  width: 0;
+  border-right: 2px solid currentColor;
+  animation: splash-type1 800ms steps(17, end) forwards;
+}
+
+.splash-type-line2 {
+  width: 0;
+  opacity: 0;
+  border-right: 2px solid currentColor;
+  animation:
+    splash-type2 600ms steps(15, end) 900ms forwards,
+    splash-appear 1ms 900ms forwards;
+}
+
+.splash-cursor {
+  animation: splash-blink 900ms steps(1) infinite;
+}
+
+@keyframes splash-type1 {
+  to {
+    width: 17ch;
+  }
+}
+@keyframes splash-type2 {
+  to {
+    width: 15ch;
+  }
+}
+@keyframes splash-appear {
+  to {
+    opacity: 1;
+  }
+}
+@keyframes splash-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* --- Blur transition phase --- */
+
+.splash-blur-frame {
+  opacity: 0;
+  animation: splash-blur-pulse 300ms ease forwards;
+}
+@keyframes splash-blur-pulse {
+  0% {
+    opacity: 0;
+    filter: blur(0);
+  }
+  40% {
+    opacity: 0.15;
+    filter: blur(20px);
+  }
+  100% {
+    opacity: 0;
+    filter: blur(0);
+  }
+}
+
+/* --- Fake 404 phase --- */
+
+.splash-notfound {
+  filter: blur(10px);
+  opacity: 0;
+  animation: splash-blur-in 350ms ease forwards;
+}
+@keyframes splash-blur-in {
+  to {
+    filter: blur(0);
+    opacity: 1;
+  }
+}
+
+.splash-notfound-wink {
+  opacity: 0;
+  animation: splash-appear 400ms ease 500ms forwards;
+}
+
+/* --- Accessibility: respect reduced motion --- */
+
+@media (prefers-reduced-motion: reduce) {
+  .splash-type-line1,
+  .splash-type-line2,
+  .splash-cursor,
+  .splash-blur-frame,
+  .splash-notfound,
+  .splash-notfound-wink {
+    animation: none !important;
+    opacity: 1 !important;
+    filter: none !important;
+    width: auto !important;
+  }
+}

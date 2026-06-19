@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, useCallback } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { preloadedFrames, PRIORITY_COUNT, FRAME_COUNT } from '../../utils/framePreloader'
+import { frameManager, FRAME_COUNT } from '../../utils/framePreloader'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -14,59 +14,44 @@ export function ScrollSequence() {
   const wordAnimateRef = useRef<HTMLDivElement>(null)
   const wordDeveloperRef = useRef<HTMLDivElement>(null)
 
-  const framesRef = useRef<HTMLImageElement[]>([])
   const currentFrameRef = useRef(-1)
 
   const [framesReady, setFramesReady] = useState(false)
   const [loadProgress, setLoadProgress] = useState(0)
 
-  // Use preloaded images and progressively wait for priority frames
+  // Subscribe to frame manager updates and wait for ready
   useEffect(() => {
-    let cancelled = false
-
-    // Use preloaded images if available, otherwise create new ones
-    const images = preloadedFrames.length === FRAME_COUNT
-      ? preloadedFrames
-      : Array.from({ length: FRAME_COUNT }, (_, i) => {
-          const img = new Image()
-          img.src = `/assets/frames-mobile/${String(i + 1).padStart(5, '0')}.png`
-          return img
-        })
-
-    framesRef.current = images
-
-    let loadedCount = 0
-    let priorityDone = false
-
-    const checkLoad = (idx: number) => {
-      if (cancelled) return
-      loadedCount++
-      setLoadProgress(Math.round((loadedCount / FRAME_COUNT) * 100))
-
-      // Mark ready once first few priority frames are loaded
-      if (!priorityDone && idx < PRIORITY_COUNT) {
-        const priorityLoaded = images.slice(0, PRIORITY_COUNT).filter(img => img.complete).length
-        if (priorityLoaded >= 5) {
-          priorityDone = true
-          setFramesReady(true)
-        }
-      }
+    // Check if already ready (preloaded in main.tsx)
+    if (frameManager.isReady) {
+      setFramesReady(true)
+      setLoadProgress(100)
+      return
     }
 
-    images.forEach((img, idx) => {
-      if (img.complete) {
-        checkLoad(idx)
-      } else {
-        const handler = () => checkLoad(idx)
-        img.addEventListener('load', handler, { once: true })
-        img.addEventListener('error', handler, { once: true })
+    let localReady = false
+    const unsubscribe = frameManager.subscribe(() => {
+      const loaded = frameManager.getLoadedCount()
+      setLoadProgress(Math.round((loaded / Math.min(FRAME_COUNT, 30)) * 100))
+      if (frameManager.isReady && !localReady) {
+        localReady = true
+        setFramesReady(true)
+        setLoadProgress(100)
       }
     })
 
-    return () => { cancelled = true }
+    return () => {
+      unsubscribe()
+    }
   }, [])
 
-  // Draw a specific frame to canvas
+  // Destroy frame manager only on component unmount
+  useEffect(() => {
+    return () => {
+      frameManager.destroy()
+    }
+  }, [])
+
+  // Draw a specific frame to canvas using the windowed frame manager
   const drawFrame = useCallback((frameIndex: number) => {
     const canvas = canvasRef.current
     if (!canvas) return
@@ -76,7 +61,7 @@ export function ScrollSequence() {
     const clampedIndex = Math.max(0, Math.min(FRAME_COUNT - 1, frameIndex))
     if (clampedIndex === currentFrameRef.current) return
 
-    const img = framesRef.current[clampedIndex]
+    const img = frameManager.getFrame(clampedIndex)
     if (!img || !img.complete) return
 
     currentFrameRef.current = clampedIndex
@@ -143,6 +128,8 @@ export function ScrollSequence() {
       onUpdate: (self) => {
         const progress = self.progress
         const frameIndex = Math.round(progress * (FRAME_COUNT - 1))
+        // Load frames around the current scroll position (windowed loading)
+        frameManager.loadWindow(frameIndex)
         drawFrame(frameIndex)
 
         // Animate words based on scroll progress

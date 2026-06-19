@@ -1,11 +1,9 @@
 import { useEffect, useRef, useState, useCallback } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { preloadedFrames, PRIORITY_COUNT, FRAME_COUNT } from '../../utils/framePreloader'
 
 gsap.registerPlugin(ScrollTrigger)
-
-const FRAME_COUNT = 217
-const FRAME_PATH = (i: number) => `/assets/frames-mobile/${String(i).padStart(5, '0')}.png`
 
 export function ScrollSequence() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -17,36 +15,55 @@ export function ScrollSequence() {
   const wordDeveloperRef = useRef<HTMLDivElement>(null)
 
   const framesRef = useRef<HTMLImageElement[]>([])
-  const loadedCountRef = useRef(0)
   const currentFrameRef = useRef(-1)
 
   const [framesReady, setFramesReady] = useState(false)
   const [loadProgress, setLoadProgress] = useState(0)
 
-  // Preload all PNG frames
+  // Use preloaded images and progressively wait for priority frames
   useEffect(() => {
     let cancelled = false
-    const images: HTMLImageElement[] = []
-    loadedCountRef.current = 0
 
-    for (let i = 1; i <= FRAME_COUNT; i++) {
-      const img = new Image()
-      img.src = FRAME_PATH(i)
-      img.onload = img.onerror = () => {
-        if (cancelled) return
-        loadedCountRef.current++
-        setLoadProgress(Math.round((loadedCountRef.current / FRAME_COUNT) * 100))
-        if (loadedCountRef.current >= FRAME_COUNT) {
-          framesRef.current = images
+    // Use preloaded images if available, otherwise create new ones
+    const images = preloadedFrames.length === FRAME_COUNT
+      ? preloadedFrames
+      : Array.from({ length: FRAME_COUNT }, (_, i) => {
+          const img = new Image()
+          img.src = `/assets/frames-mobile/${String(i + 1).padStart(5, '0')}.png`
+          return img
+        })
+
+    framesRef.current = images
+
+    let loadedCount = 0
+    let priorityDone = false
+
+    const checkLoad = (idx: number) => {
+      if (cancelled) return
+      loadedCount++
+      setLoadProgress(Math.round((loadedCount / FRAME_COUNT) * 100))
+
+      // Mark ready once first few priority frames are loaded
+      if (!priorityDone && idx < PRIORITY_COUNT) {
+        const priorityLoaded = images.slice(0, PRIORITY_COUNT).filter(img => img.complete).length
+        if (priorityLoaded >= 5) {
+          priorityDone = true
           setFramesReady(true)
         }
       }
-      images.push(img)
     }
 
-    return () => {
-      cancelled = true
-    }
+    images.forEach((img, idx) => {
+      if (img.complete) {
+        checkLoad(idx)
+      } else {
+        const handler = () => checkLoad(idx)
+        img.addEventListener('load', handler, { once: true })
+        img.addEventListener('error', handler, { once: true })
+      }
+    })
+
+    return () => { cancelled = true }
   }, [])
 
   // Draw a specific frame to canvas

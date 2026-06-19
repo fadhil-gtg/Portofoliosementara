@@ -9,7 +9,8 @@ interface SmoothScrollProps {
 export function SmoothScroll({ children }: SmoothScrollProps) {
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    if (prefersReducedMotion) return
+    const isMobile = window.innerWidth < 768
+    if (prefersReducedMotion || isMobile) return
 
     const lenis = new Lenis({
       duration: 0.95,

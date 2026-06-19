@@ -5,7 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)
 
 const FRAME_COUNT = 217
-const FRAME_PATH = (i: number) => `/assets/frames/${String(i).padStart(5, '0')}.png`
+const FRAME_PATH = (i: number) => `/assets/frames-mobile/${String(i).padStart(5, '0')}.png`
 
 export function ScrollSequence() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -22,7 +22,6 @@ export function ScrollSequence() {
 
   const [framesReady, setFramesReady] = useState(false)
   const [loadProgress, setLoadProgress] = useState(0)
-  const [isMobile, setIsMobile] = useState(false)
 
   // Preload all PNG frames
   useEffect(() => {
@@ -30,20 +29,14 @@ export function ScrollSequence() {
     const images: HTMLImageElement[] = []
     loadedCountRef.current = 0
 
-    const checkIsMobile = window.innerWidth < 768
-    setIsMobile(checkIsMobile)
-
-    const framesToLoad = checkIsMobile ? [1, FRAME_COUNT] : Array.from({ length: FRAME_COUNT }, (_, i) => i + 1)
-    const totalFrames = framesToLoad.length
-
-    for (const i of framesToLoad) {
+    for (let i = 1; i <= FRAME_COUNT; i++) {
       const img = new Image()
       img.src = FRAME_PATH(i)
       img.onload = img.onerror = () => {
         if (cancelled) return
         loadedCountRef.current++
-        setLoadProgress(Math.round((loadedCountRef.current / totalFrames) * 100))
-        if (loadedCountRef.current >= totalFrames) {
+        setLoadProgress(Math.round((loadedCountRef.current / FRAME_COUNT) * 100))
+        if (loadedCountRef.current >= FRAME_COUNT) {
           framesRef.current = images
           setFramesReady(true)
         }
@@ -63,14 +56,7 @@ export function ScrollSequence() {
     const ctx = canvas.getContext('2d')
     if (!ctx) return
 
-    let clampedIndex = 0
-    if (isMobile) {
-      // Pada mobile, framesRef hanya berisi 2 gambar: [awal, akhir]
-      clampedIndex = frameIndex < (FRAME_COUNT / 2) ? 0 : 1
-    } else {
-      clampedIndex = Math.max(0, Math.min(FRAME_COUNT - 1, frameIndex))
-    }
-
+    const clampedIndex = Math.max(0, Math.min(FRAME_COUNT - 1, frameIndex))
     if (clampedIndex === currentFrameRef.current) return
 
     const img = framesRef.current[clampedIndex]
@@ -108,7 +94,7 @@ export function ScrollSequence() {
     }
 
     ctx.drawImage(img, drawX, drawY, drawW, drawH)
-  }, [isMobile])
+  }, [])
 
   // Handle resize
   useEffect(() => {
@@ -134,7 +120,7 @@ export function ScrollSequence() {
     const scrollTrigger = ScrollTrigger.create({
       trigger: section,
       start: 'top top',
-      end: isMobile ? '+=150%' : '+=300%',
+      end: '+=300%',
       scrub: 0.5,
       pin: true,
       onUpdate: (self) => {
@@ -201,7 +187,7 @@ export function ScrollSequence() {
       window.scrollSequenceReady = false
       scrollTrigger.kill()
     }
-  }, [framesReady, drawFrame, isMobile])
+  }, [framesReady, drawFrame])
 
   return (
     <section

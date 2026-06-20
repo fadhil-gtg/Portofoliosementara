@@ -34,7 +34,7 @@ const socialLinks = [
   { label: 'LinkedIn', href: 'https://www.linkedin.com/in/adhika-fadhil-putra-djatin/', icon: Linkedin },
   { label: 'GitHub', href: 'https://github.com/fadhil-gtg', icon: Github },
   { label: 'TikTok', href: 'https://www.tiktok.com/@kharismashop88', icon: TikTokIcon },
-  { label: 'YouTube', href: 'https://www.youtube.com/@adhika_fadhi1', icon: Youtube },
+  { label: 'YouTube', href: 'https://www.youtube.com/@Adhika_Fadhi1.', icon: Youtube },
 ]
 
 type FormStatus = 'idle' | 'sending' | 'success' | 'error'

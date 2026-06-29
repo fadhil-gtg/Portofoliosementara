@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { BlurText } from '../../components/ReactBits'
 import type { Language } from '../../components/Navbar'
+import { useScrollScaleFade } from '../../hooks/useScrollScaleFade'
 
 interface TimelineItem {
   title: string
@@ -97,10 +98,10 @@ function TimelineCard({ item, align, language }: { item: TimelineItem; align: 'l
         align === 'right' ? 'md:text-right' : 'md:text-left'
       }`}
     >
-      <h3 className="text-3xl font-display font-semibold tracking-tight text-[#f2ede5]">
+      <h3 className="text-2xl font-display font-semibold tracking-tight text-[#f2ede5]">
         {item.title}
       </h3>
-      <p className="mt-5 font-sans text-base leading-8 text-[#a89e92] md:text-lg md:leading-9">
+      <p className="mt-5 font-sans text-sm leading-7 text-[#a89e92] md:text-base md:leading-8">
         {language === 'id' ? timelineDescriptionsId[item.title] : item.description}
       </p>
       <div
@@ -123,6 +124,7 @@ function TimelineCard({ item, align, language }: { item: TimelineItem; align: 'l
 
 export function Experience({ language = 'en' }: { language?: Language }) {
   const timelineRef = useRef<HTMLDivElement>(null)
+  const headingRef = useScrollScaleFade<HTMLDivElement>()
   const lineRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -157,11 +159,11 @@ export function Experience({ language = 'en' }: { language?: Language }) {
       <div className="pointer-events-none absolute left-0 bottom-0 h-[28rem] w-[48rem] rounded-full bg-[#c8a96e]/[0.035] blur-3xl" />
 
       <div className="relative mx-auto max-w-7xl">
-        <div>
+        <div ref={headingRef} className="will-change-[opacity,transform]">
           <BlurText
             text={language === 'id' ? 'Pengalaman Saya' : 'My Experience'}
             delay={55}
-            className="text-6xl font-display font-bold leading-none tracking-tight text-[#f2ede5] drop-shadow-[0_22px_60px_rgba(0,0,0,0.42)] [&>span:nth-child(2)]:text-[#c8a96e] sm:text-7xl lg:text-8xl"
+            className="text-4xl font-display font-bold leading-none tracking-tight text-[#f2ede5] drop-shadow-[0_22px_60px_rgba(0,0,0,0.42)] [&>span:nth-child(2)]:text-[#c8a96e] sm:text-5xl lg:text-6xl"
           />
           <div className="mt-8 h-px w-28 bg-gradient-to-r from-[#c8a96e] via-[#c8a96e]/45 to-transparent" />
         </div>

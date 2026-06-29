@@ -65,7 +65,7 @@ export const projectsData: ProjectData[] = [
       'Sebuah website perawatan sepatu modern yang dirancang untuk mengubah pengunjung menjadi pelanggan melalui visual premium, harga transparan, dan pemesanan WhatsApp yang mulus.',
     stack: ['React', 'Vite', 'TypeScript', 'Tailwind CSS'],
     githubUrl: 'https://github.com/',
-    demoUrl: 'https://github.com/',
+    demoUrl: 'https://kucekshoes.vercel.app/',
     accent: 'from-[#1e293b] via-[#334155] to-[#0f172a]',
     imageUrl: '/assets/logos/kucek.webp',
     cinematic:

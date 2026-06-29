@@ -1,12 +1,13 @@
 import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { DURATION, EASING, MOVEMENT } from '../../animations'
+import { useScrollScaleFade } from '../../hooks/useScrollScaleFade'
 
 export function Intro() {
   const sectionRef = useRef<HTMLElement>(null)
   const greetingRef = useRef<HTMLDivElement>(null)
-  const titleRef = useRef<HTMLDivElement>(null)
-  const subtitleRef = useRef<HTMLDivElement>(null)
+  const titleRef = useScrollScaleFade<HTMLDivElement>()
+  const subtitleRef = useScrollScaleFade<HTMLDivElement>()
 
   const handleClick = () => {
     // Smooth scroll to ScrollSequence when Intro is clicked
@@ -64,21 +65,21 @@ export function Intro() {
             ref={greetingRef}
             className="mb-6 md:mb-8"
           >
-            <p className="text-xl md:text-2xl lg:text-3xl font-sans text-gray-400 tracking-wide leading-relaxed">
+            <p className="text-lg md:text-xl lg:text-2xl font-sans text-gray-400 tracking-wide leading-relaxed">
               Hi, Saya Adhika <span className="inline-block">👋</span>
             </p>
           </div>
 
           {/* Main Title */}
-          <div ref={titleRef} className="mb-4">
-            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-display font-bold text-white leading-[0.95] tracking-tight">
+          <div ref={titleRef} className="mb-4 will-change-[opacity,transform]">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-display font-bold text-white leading-[0.95] tracking-tight">
               Web Designer
             </h1>
           </div>
 
           {/* Subtitle */}
-          <div ref={subtitleRef}>
-            <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-display font-bold text-white/30 leading-[0.95] tracking-tight">
+          <div ref={subtitleRef} className="will-change-[opacity,transform]">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-display font-bold text-white/30 leading-[0.95] tracking-tight">
               & Front-End Developer
             </h2>
           </div>

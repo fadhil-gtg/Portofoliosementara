@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { BlurText } from '../../components/ReactBits'
 import type { Language } from '../../components/Navbar'
 import { projectsData, getProjectDescription, type ProjectData } from './projectData'
+import { useScrollScaleFade } from '../../hooks/useScrollScaleFade'
 
 function ProjectCard({ project, index, language }: { project: ProjectData; index: number; language: Language }) {
   const ref = useRef<HTMLElement>(null)
@@ -50,7 +51,7 @@ function ProjectCard({ project, index, language }: { project: ProjectData; index
 
       <div className="flex flex-1 flex-col p-6 md:p-7">
         <div className="flex items-start justify-between gap-5">
-          <h3 className={`max-w-lg text-4xl font-display font-semibold leading-tight tracking-tight text-[#f2ede5] md:text-5xl ${project.slug === 'kucek-shoes' ? 'italic' : ''}`}>
+          <h3 className={`max-w-lg text-3xl font-display font-semibold leading-tight tracking-tight text-[#f2ede5] md:text-4xl ${project.slug === 'kucek-shoes' ? 'italic' : ''}`}>
             {project.title}
           </h3>
           <span className="hidden shrink-0 rounded-full border border-[#f2ede5]/10 bg-[#0b0b0e]/45 px-3 py-1.5 text-xs font-mono text-[#f2ede5]/58 sm:inline-flex">
@@ -58,7 +59,7 @@ function ProjectCard({ project, index, language }: { project: ProjectData; index
           </span>
         </div>
 
-        <p className="mt-5 font-sans text-base leading-8 text-[#a89e92] md:text-lg md:leading-9">
+        <p className="mt-5 font-sans text-sm leading-7 text-[#a89e92] md:text-base md:leading-8">
           {getProjectDescription(project, language)}
         </p>
 
@@ -95,6 +96,7 @@ function ProjectCard({ project, index, language }: { project: ProjectData; index
 }
 
 export function Projects({ language = 'en' }: { language?: Language }) {
+  const headingRef = useScrollScaleFade<HTMLDivElement>()
   return (
     <section
       id="projects"
@@ -106,11 +108,11 @@ export function Projects({ language = 'en' }: { language?: Language }) {
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-56 bg-gradient-to-b from-transparent to-[#0b0b0e]/45" />
 
       <div className="relative mx-auto max-w-7xl">
-        <div>
+        <div ref={headingRef} className="will-change-[opacity,transform]">
           <BlurText
             text={language === 'id' ? 'Proyek Saya' : 'My Projects'}
             delay={55}
-            className="text-6xl font-display font-bold leading-none tracking-tight text-[#f2ede5] [&>span:nth-child(2)]:text-[#c8a96e] sm:text-7xl lg:text-8xl"
+            className="text-4xl font-display font-bold leading-none tracking-tight text-[#f2ede5] [&>span:nth-child(2)]:text-[#c8a96e] sm:text-5xl lg:text-6xl"
           />
           <div className="mt-8 h-px w-20 bg-[rgba(200,169,110,0.6)]" />
         </div>

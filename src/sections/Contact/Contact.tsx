@@ -2,6 +2,7 @@ import { Check, Github, Instagram, Linkedin, Loader2, Mail, Send, Youtube } from
 import { useCallback, useEffect, useRef, useState } from 'react'
 import type { Language } from '../../components/Navbar'
 import { BlurText } from '../../components/ReactBits'
+import { useScrollScaleFade } from '../../hooks/useScrollScaleFade'
 
 const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xojzvykl'
 
@@ -41,6 +42,7 @@ type FormStatus = 'idle' | 'sending' | 'success' | 'error'
 
 export function Contact({ language = 'en' }: { language?: Language }) {
   const formRef = useRef<HTMLFormElement>(null)
+  const headingRef = useScrollScaleFade<HTMLDivElement>()
   const [formVisible, setFormVisible] = useState(false)
   const [status, setStatus] = useState<FormStatus>('idle')
   const [errorMsg, setErrorMsg] = useState('')
@@ -103,15 +105,15 @@ export function Contact({ language = 'en' }: { language?: Language }) {
 
       <div className="relative mx-auto max-w-7xl">
         <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start lg:gap-14 xl:gap-18">
-          <div>
+          <div ref={headingRef} className="will-change-[opacity,transform]">
           <BlurText
             text={language === 'id' ? 'Punya Proyek? Mari Kita Wujudkan.' : 'Have a Project? Let\'s Make It Happen.'}
               delay={45}
-              className="max-w-4xl text-5xl font-display font-bold leading-[0.98] tracking-tight text-[#f2ede5] drop-shadow-[0_22px_60px_rgba(0,0,0,0.42)] sm:text-6xl md:text-7xl lg:text-8xl"
+              className="max-w-4xl text-4xl font-display font-bold leading-[0.98] tracking-tight text-[#f2ede5] drop-shadow-[0_22px_60px_rgba(0,0,0,0.42)] sm:text-5xl md:text-6xl lg:text-7xl"
             />
             <div className="mt-8 h-px w-28 bg-gradient-to-r from-[#c8a96e] via-[#c8a96e]/45 to-transparent" />
 
-            <p className="mt-8 max-w-xl font-sans text-base leading-8 text-[#a89e92] md:text-lg md:leading-9">
+            <p className="mt-8 max-w-xl font-sans text-sm leading-7 text-[#a89e92] md:text-base md:leading-8">
               {language === 'id'
                 ? 'Terbuka untuk kolaborasi, eksplorasi ide, atau membangun pengalaman digital yang terasa rapi, cepat, dan profesional.'
                 : 'Open to collaboration, idea exploration, or building digital experiences that feel neat, fast, and professional.'}

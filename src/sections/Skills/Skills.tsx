@@ -1,6 +1,7 @@
 import { BorderGlow, BlurText } from '../../components/ReactBits'
 import { useEffect, useRef, useState } from 'react'
 import type { Language } from '../../components/Navbar'
+import { useScrollScaleFade } from '../../hooks/useScrollScaleFade'
 
 interface Skill {
   name: string
@@ -255,6 +256,7 @@ function SkillCard({ skill, language }: { skill: Skill; language: Language }) {
 }
 
 export function Skills({ language = 'en' }: { language?: Language }) {
+  const headingRef = useScrollScaleFade<HTMLDivElement>()
   return (
     <section
       id="skills"
@@ -263,11 +265,11 @@ export function Skills({ language = 'en' }: { language?: Language }) {
       <div className="pointer-events-none absolute left-1/2 top-24 h-[32rem] w-[54rem] -translate-x-1/2 rounded-full bg-[#c8a96e]/[0.04] blur-3xl" />
 
       <div className="relative mx-auto max-w-7xl">
-        <div>
+        <div ref={headingRef} className="will-change-[opacity,transform]">
           <BlurText
             text={language === 'id' ? 'Skill Saya' : 'My Skills'}
             delay={55}
-            className="text-6xl font-display font-bold leading-none tracking-tight text-[#f2ede5] drop-shadow-[0_22px_60px_rgba(0,0,0,0.42)] [&>span:nth-child(2)]:text-[#c8a96e] sm:text-7xl lg:text-8xl"
+            className="text-4xl font-display font-bold leading-none tracking-tight text-[#f2ede5] drop-shadow-[0_22px_60px_rgba(0,0,0,0.42)] [&>span:nth-child(2)]:text-[#c8a96e] sm:text-5xl lg:text-6xl"
           />
           <div className="mt-8 h-px w-28 bg-gradient-to-r from-[#c8a96e] via-[#c8a96e]/45 to-transparent" />
         </div>

@@ -1,5 +1,6 @@
 import { BlurText, LogoLoop, ProfileCard, ScrollReveal, type LogoLoopItem } from '../../components/ReactBits'
 import type { Language } from '../../components/Navbar'
+import { useScrollScaleFade } from '../../hooks/useScrollScaleFade'
 
 const aboutDescriptions: Record<Language, string[]> = {
   en: [
@@ -37,6 +38,7 @@ const logoItems: LogoLoopItem[] = [
 
 export function About({ language = 'en' }: { language?: Language }) {
   const aboutDescription = aboutDescriptions[language]
+  const contentRef = useScrollScaleFade<HTMLDivElement>()
   const handleContactClick = () => {
     const contactSection = document.querySelector<HTMLElement>('#contact')
     if (!contactSection) return
@@ -108,11 +110,11 @@ export function About({ language = 'en' }: { language?: Language }) {
             />
           </aside>
 
-          <div className="flex flex-col gap-8 lg:pt-0">
+          <div ref={contentRef} className="flex flex-col gap-8 lg:pt-0 will-change-[opacity,transform]">
             <BlurText
               text="Who Am I?"
               delay={70}
-              className="text-6xl font-display font-bold leading-none tracking-tight text-[#f2ede5] drop-shadow-[0_22px_55px_rgba(200,169,110,0.14)] sm:text-7xl lg:text-8xl"
+              className="text-4xl font-display font-bold leading-none tracking-tight text-[#f2ede5] drop-shadow-[0_22px_55px_rgba(200,169,110,0.14)] sm:text-5xl lg:text-6xl"
             />
 
             <div className="h-px w-24 bg-gradient-to-r from-[#c8a96e] via-[#c8a96e]/45 to-transparent" />
@@ -122,7 +124,7 @@ export function About({ language = 'en' }: { language?: Language }) {
                 <ScrollReveal
                   key={paragraph}
                   baseRotation={0}
-                  textClassName="font-sans text-[clamp(1.05rem,1.55vw,1.35rem)] font-medium leading-[1.85] tracking-[-0.01em] text-[#a89e92]"
+                  textClassName="font-sans text-[clamp(0.925rem,1.25vw,1.125rem)] font-medium leading-[1.85] tracking-[-0.01em] text-[#a89e92]"
                 >
                   {paragraph}
                 </ScrollReveal>

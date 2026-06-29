@@ -1,5 +1,5 @@
 const FRAME_COUNT = 217
-const FRAME_PATH = (i: number) => `/assets/frames-mobile/${String(i + 1).padStart(5, '0')}.png`
+const FRAME_PATH = (i: number) => `/assets/frames-mobile/${String(i + 1).padStart(5, '0')}.webp`
 
 const WINDOW_SIZE = 30
 const READY_THRESHOLD = 5

@@ -30,7 +30,7 @@ export const projectsData: ProjectData[] = [
     githubUrl: 'https://github.com/',
     demoUrl: 'https://fadhil-gtg.github.io/Company-profile/',
     accent: 'from-[#D8E6FF] via-[#90B7FF] to-[#26324D]',
-    imageUrl: '/assets/logos/PT2.png',
+    imageUrl: '/assets/logos/PT2.webp',
     cinematic:
       'A sleek corporate presence brought to life \u2014 professional layout, service-focused storytelling, and a digital face worthy of a multi-city technology company.',
     cinematicId:
@@ -67,7 +67,7 @@ export const projectsData: ProjectData[] = [
     githubUrl: 'https://github.com/',
     demoUrl: 'https://github.com/',
     accent: 'from-[#1e293b] via-[#334155] to-[#0f172a]',
-    imageUrl: '/assets/logos/kucekshoes.png',
+    imageUrl: '/assets/logos/kucek.webp',
     cinematic:
       'KUCEK.SHOES is a modern landing page that I designed and developed from scratch for a local shoe care business established in 2020. The website was built to replace a conventional social-media-only presence with a fast, conversion-focused experience that clearly communicates services, pricing, credibility, and real restoration results.',
     cinematicId:
@@ -108,7 +108,7 @@ export const projectsData: ProjectData[] = [
     githubUrl: 'https://github.com/',
     demoUrl: 'https://www.adhikarace.my.id/',
     accent: 'from-[#F7E7C6] via-[#D8A85C] to-[#3A2A16]',
-    imageUrl: '/assets/logos/adhikarace3.png',
+    imageUrl: '/assets/logos/adhikarace3.webp',
     cinematic:
       'A live sport bike marketplace with real products, real prices, and real transactions \u2014 where premium brands like Ducati and BMW meet frictionless WhatsApp commerce.',
     cinematicId:
@@ -145,7 +145,7 @@ export const projectsData: ProjectData[] = [
     githubUrl: 'https://github.com/',
     demoUrl: 'https://fadhil-gtg.github.io/ServerMonitoringDashboard/',
     accent: 'from-[#E8D7A8] via-[#C8A96E] to-[#2C2417]',
-    imageUrl: '/assets/logos/monitoring4.png',
+    imageUrl: '/assets/logos/monitoring4.webp',
     cinematic:
       'A real-time DevOps command center \u2014 where Docker, Prometheus, and Node Exporter converge into a live dashboard that breathes with every server heartbeat.',
     cinematicId:

@@ -236,12 +236,12 @@ export function ScrollSequence() {
         </div>
       )}
 
-      {/* Background massive PORTFOLIO text */}
+      {/* Background massive PORTFOLIO text - di atas canvas (z-15) tapi di bawah kata-kata (z-30) */}
       <div 
         ref={bgTextRef}
-        className="absolute inset-0 top-[15%] z-0 flex items-start justify-center overflow-hidden opacity-[0.04] pointer-events-none select-none"
+        className="absolute inset-0 z-[15] flex items-center justify-center overflow-hidden pointer-events-none select-none"
       >
-        <span className="font-display text-[25vw] font-black uppercase leading-none tracking-tighter text-white">
+        <span className="font-display text-[28vw] font-black uppercase leading-none tracking-tighter text-white/[0.04]">
           PORTFOLIO
         </span>
       </div>

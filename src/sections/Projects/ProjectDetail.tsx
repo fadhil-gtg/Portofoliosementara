@@ -73,7 +73,7 @@ export function ProjectDetail({ language = 'en' }: { language?: Language }) {
 
         {/* Title & index */}
         <div className="mt-12 flex items-start justify-between gap-6">
-          <h1 className="text-5xl font-display font-bold leading-tight tracking-tight text-[#f2ede5] md:text-6xl lg:text-7xl">
+          <h1 className={`text-5xl font-display font-bold leading-tight tracking-tight text-[#f2ede5] md:text-6xl lg:text-7xl ${project.slug === 'kucek-shoes' ? 'italic' : ''}`}>
             {project.title}
           </h1>
           <span className="hidden shrink-0 rounded-full border border-[#f2ede5]/10 bg-[#0b0b0e]/45 px-4 py-2 font-mono text-sm text-[#f2ede5]/50 sm:inline-flex">

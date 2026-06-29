@@ -20,43 +20,6 @@ export interface ProjectData {
 
 export const projectsData: ProjectData[] = [
   {
-    slug: 'portfolio-motion-system',
-    title: 'Komdigi',
-    description:
-      'I built a replica of the official website of Indonesia\'s Ministry of Communication and Digital Affairs with my team. The site covers current news, public services, digital transformation, and performance reports \u2014 completed as a group project for the TKJ4 class.',
-    descriptionId:
-      'Saya membangun replika website resmi Kementerian Komunikasi dan Digital RI bersama tim. Situs ini mencakup fitur berita terkini, layanan publik, transformasi digital, dan laporan kinerja \u2014 dikerjakan sebagai proyek kelompok kelas TKJ4.',
-    stack: ['HTML', 'CSS', 'JavaScript', 'Team Project'],
-    githubUrl: 'https://github.com/',
-    demoUrl: 'https://fadhil-gtg.github.io/komdigi-tkj4-klmpk3/',
-    accent: 'from-[#FAFAF7] via-[#E8E8E3] to-[#9B9B8F]',
-    imageUrl: '/assets/logos/Komdigi1.png',
-    cinematic:
-      'A full-scale government portal experience \u2014 multi-page architecture, structured navigation, and a civic digital identity rebuilt from the ground up.',
-    cinematicId:
-      'Pengalaman portal pemerintahan berskala penuh \u2014 arsitektur multi-halaman, navigasi terstruktur, dan identitas digital pemerintahan yang dibangun dari nol.',
-    features: [
-      'Multi-page government portal with structured site architecture',
-      'Multi-level dropdown navigation across 5 main menu categories',
-      'News & media hub covering press releases, hoax clarifications, and photo galleries',
-      'Public service pages including scholarships, licensing, and emergency call 112',
-      'Performance report section with financial, annual, and service documentation',
-      'Digital transformation coverage across infrastructure, economy, and cybersecurity',
-    ],
-    featuresId: [
-      'Portal pemerintahan multi-halaman dengan arsitektur situs terstruktur',
-      'Navigasi dropdown multi-level di 5 kategori menu utama',
-      'Hub berita & media mencakup siaran pers, klarifikasi hoaks, dan galeri foto',
-      'Halaman layanan publik termasuk beasiswa, perizinan, dan panggilan darurat 112',
-      'Bagian laporan kinerja dengan dokumentasi keuangan, tahunan, dan pelayanan',
-      'Liputan transformasi digital mencakup infrastruktur, ekonomi, dan keamanan siber',
-    ],
-    longDescription:
-      'I worked on this project with 6 team members as a group assignment for the TKJ4 class. The site consists of multiple pages covering various features such as News (press releases, hoax clarifications, photos, videos, magazines), Team Member Profiles, Performance Reports (financial, annual, service), Public Services (certification, scholarships, licensing, emergency call 112), and a Digital Transformation page discussing infrastructure, economy, and cybersecurity. All pages were built manually using pure HTML and CSS without any framework, with multi-level dropdown navigation that mirrors the structure of the actual government site.',
-    longDescriptionId:
-      'Proyek ini saya kerjakan bersama 6 anggota tim sebagai tugas kelompok kelas TKJ4. Situs terdiri dari banyak halaman yang mencakup berbagai fitur seperti halaman Berita (siaran pers, klarifikasi hoaks, foto, video, majalah), halaman Profil anggota tim, Laporan Kinerja (keuangan, tahunan, pelayanan), Layanan publik (sertifikasi, beasiswa, perizinan, panggilan darurat 112), hingga halaman Transformasi Digital yang membahas infrastruktur, ekonomi, dan keamanan siber. Seluruh halaman dibangun secara manual menggunakan HTML dan CSS murni tanpa framework, dengan navigasi dropdown multi-level yang menyerupai struktur situs pemerintah asli.',
-  },
-  {
     slug: 'linux-server-lab',
     title: 'Radnet Digital Indonesia',
     description:
@@ -92,6 +55,47 @@ export const projectsData: ProjectData[] = [
       'I built this site as the official digital representation of PT Radnet Digital Indonesia, a company operating in connectivity services and digital solutions. The site includes a homepage showcasing three flagship services (EzySky, Internet Security, RadneXt Internet), an Employee page, and an About Us page with contact details and office locations in three cities \u2014 Surabaya, Bandung, and Jakarta. I also included official partner logos such as Unesa, SMKN 1 Surabaya, SMK Ketintang, and SMKN 6 Surabaya, along with direct WhatsApp button integration for client consultation.',
     longDescriptionId:
       'Saya membangun situs ini sebagai representasi digital resmi PT Radnet Digital Indonesia, perusahaan yang bergerak di bidang layanan konektivitas dan solusi digital. Situs mencakup halaman utama yang menampilkan tiga layanan unggulan (EzySky, Internet Security, RadneXt Internet), halaman Karyawan, serta halaman Tentang Kami dengan detail kontak dan lokasi kantor di tiga kota \u2014 Surabaya, Bandung, dan Jakarta. Saya juga menyertakan logo mitra resmi perusahaan seperti Unesa, SMKN 1 Surabaya, SMK Ketintang, dan SMKN 6 Surabaya, serta integrasi tombol WhatsApp langsung untuk konsultasi klien.',
+  },
+  {
+    slug: 'kucek-shoes',
+    title: 'KUCEK.SHOES',
+    description:
+      'A modern shoe care website designed to turn visitors into customers through premium visuals, transparent pricing, and seamless WhatsApp ordering.',
+    descriptionId:
+      'Sebuah website perawatan sepatu modern yang dirancang untuk mengubah pengunjung menjadi pelanggan melalui visual premium, harga transparan, dan pemesanan WhatsApp yang mulus.',
+    stack: ['React', 'Vite', 'TypeScript', 'Tailwind CSS'],
+    githubUrl: 'https://github.com/',
+    demoUrl: 'https://github.com/',
+    accent: 'from-[#1e293b] via-[#334155] to-[#0f172a]',
+    imageUrl: '/assets/logos/kucekshoes.png',
+    cinematic:
+      'KUCEK.SHOES is a modern landing page that I designed and developed from scratch for a local shoe care business established in 2020. The website was built to replace a conventional social-media-only presence with a fast, conversion-focused experience that clearly communicates services, pricing, credibility, and real restoration results.',
+    cinematicId:
+      'KUCEK.SHOES adalah landing page modern yang saya desain dan kembangkan dari awal untuk bisnis perawatan sepatu lokal yang berdiri sejak 2020. Website ini dibangun untuk menggantikan kehadiran konvensional berbasis media sosial dengan pengalaman yang cepat dan berfokus pada konversi yang secara jelas mengkomunikasikan layanan, harga, kredibilitas, dan hasil restorasi nyata.',
+    features: [
+      'Interactive before & after comparison slider for shoe restoration',
+      'Transparent service pricing with categorized treatment options',
+      'WhatsApp integration for instant customer inquiries and orders',
+      'Premium dark-themed UI with bold typography and smooth animations',
+      'Customer testimonials, FAQ section, and strong call-to-action flow',
+      'Fully responsive design optimized for desktop, tablet, and mobile',
+      'SEO-ready metadata including Open Graph, favicon, and structured page hierarchy',
+      'Built with reusable React components and modern frontend architecture'
+    ],
+    featuresId: [
+      'Slider perbandingan sebelum & sesudah interaktif untuk restorasi sepatu',
+      'Harga layanan transparan dengan opsi perawatan yang dikategorikan',
+      'Integrasi WhatsApp untuk pertanyaan dan pesanan instan pelanggan',
+      'UI premium bertema gelap dengan tipografi tebal dan animasi mulus',
+      'Testimoni pelanggan, bagian FAQ, dan alur call-to-action yang kuat',
+      'Desain responsif penuh dioptimalkan untuk desktop, tablet, dan seluler',
+      'Metadata SEO-ready termasuk Open Graph, favicon, dan hierarki halaman terstruktur',
+      'Dibangun dengan komponen React yang dapat digunakan ulang dan arsitektur frontend modern'
+    ],
+    longDescription:
+      'The site showcases premium before-and-after transformations across four flagship services—Deep Cleaning, Repaint, Whitening, and Unyellowing—using an interactive comparison slider to demonstrate service quality. Visitors can browse transparent pricing, read customer testimonials, explore frequently asked questions, and place orders instantly through WhatsApp without unnecessary steps. Special attention was given to typography, motion, spacing, and visual hierarchy to create a premium brand experience while maintaining excellent loading performance and responsive behavior across desktop and mobile devices.',
+    longDescriptionId:
+      'Situs ini menampilkan transformasi sebelum dan sesudah premium di empat layanan unggulan—Deep Cleaning, Repaint, Whitening, dan Unyellowing—menggunakan slider perbandingan interaktif untuk mendemonstrasikan kualitas layanan. Pengunjung dapat menelusuri harga yang transparan, membaca testimoni pelanggan, menjelajahi pertanyaan yang sering diajukan, dan melakukan pemesanan instan melalui WhatsApp tanpa langkah-langkah yang tidak perlu. Perhatian khusus diberikan pada tipografi, gerak, jarak, dan hierarki visual untuk menciptakan pengalaman merek premium sembari mempertahankan performa pemuatan yang sangat baik dan perilaku responsif di perangkat desktop dan seluler.',
   },
   {
     slug: 'network-troubleshooting-kit',

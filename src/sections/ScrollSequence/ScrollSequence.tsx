@@ -13,6 +13,7 @@ export function ScrollSequence() {
   const wordBuildRef = useRef<HTMLDivElement>(null)
   const wordAnimateRef = useRef<HTMLDivElement>(null)
   const wordDeveloperRef = useRef<HTMLDivElement>(null)
+  const bgTextRef = useRef<HTMLDivElement>(null)
 
   const currentFrameRef = useRef(-1)
 
@@ -144,6 +145,13 @@ export function ScrollSequence() {
         if (!isMobile) frameManager.loadWindow(frameIndex)
         drawFrame(frameIndex)
 
+        // Background text move up
+        if (bgTextRef.current) {
+          // Bergerak ke atas seiring scroll (misal, 0 sampai -500px)
+          const yOffset = -(progress * 800)
+          gsap.set(bgTextRef.current, { y: yOffset })
+        }
+
         // Animate words based on scroll progress
         // DESIGN: 0-0.25 (fade in 0-0.15, fade out 0.25-0.35)
         if (wordDesignRef.current) {
@@ -228,16 +236,26 @@ export function ScrollSequence() {
         </div>
       )}
 
+      {/* Background massive PORTFOLIO text */}
+      <div 
+        ref={bgTextRef}
+        className="absolute inset-0 top-[15%] z-0 flex items-start justify-center overflow-hidden opacity-[0.04] pointer-events-none select-none"
+      >
+        <span className="font-display text-[25vw] font-black uppercase leading-none tracking-tighter text-white">
+          PORTFOLIO
+        </span>
+      </div>
+
       <canvas
         ref={canvasRef}
-        className="absolute inset-0 h-full w-full"
+        className="absolute inset-0 z-10 h-full w-full"
       />
 
       {/* Gradient transition to About section */}
-      <div className="pointer-events-none absolute bottom-0 left-0 right-0 z-10 h-80 bg-gradient-to-b from-transparent via-[#0b0b0e]/50 to-[#0b0b0e]" />
-      <div className="pointer-events-none absolute bottom-0 left-0 right-0 z-10 h-48 bg-gradient-to-b from-transparent via-[rgba(200,169,110,0.025)] to-[rgba(200,169,110,0.04)]" />
+      <div className="pointer-events-none absolute bottom-0 left-0 right-0 z-20 h-80 bg-gradient-to-b from-transparent via-[#0b0b0e]/50 to-[#0b0b0e]" />
+      <div className="pointer-events-none absolute bottom-0 left-0 right-0 z-20 h-48 bg-gradient-to-b from-transparent via-[rgba(200,169,110,0.025)] to-[rgba(200,169,110,0.04)]" />
 
-      <div className="absolute inset-0 pointer-events-none">
+      <div className="absolute inset-0 pointer-events-none z-30">
         <div ref={wordDesignRef} className="word-design absolute top-[15%] left-[10%] opacity-0 font-display text-6xl font-normal italic tracking-tight text-[#c8a96e] [font-variation-settings:'WONK'_1] md:text-8xl lg:text-9xl">
           Design
         </div>

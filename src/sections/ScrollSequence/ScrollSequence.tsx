@@ -18,11 +18,16 @@ export function ScrollSequence() {
 
   const [framesReady, setFramesReady] = useState(false)
   const [loadProgress, setLoadProgress] = useState(0)
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 768)
+  }, [])
 
   // Subscribe to frame manager updates and wait for ready
   useEffect(() => {
     // Check if already ready (preloaded in main.tsx)
-    if (frameManager.isReady) {
+    if (frameManager.isReady || isMobile) {
       setFramesReady(true)
       setLoadProgress(100)
       return
@@ -42,7 +47,7 @@ export function ScrollSequence() {
     return () => {
       unsubscribe()
     }
-  }, [])
+  }, [isMobile])
 
   // Destroy frame manager only on component unmount
   useEffect(() => {
@@ -58,7 +63,14 @@ export function ScrollSequence() {
     const ctx = canvas.getContext('2d')
     if (!ctx) return
 
-    const clampedIndex = Math.max(0, Math.min(FRAME_COUNT - 1, frameIndex))
+    let clampedIndex = 0
+    if (isMobile) {
+      clampedIndex = frameIndex < (FRAME_COUNT / 2) ? 0 : (FRAME_COUNT - 1)
+      frameManager.loadWindow(clampedIndex) // pastikan frame ujung termuat
+    } else {
+      clampedIndex = Math.max(0, Math.min(FRAME_COUNT - 1, frameIndex))
+    }
+
     if (clampedIndex === currentFrameRef.current) return
 
     const img = frameManager.getFrame(clampedIndex)
@@ -96,7 +108,7 @@ export function ScrollSequence() {
     }
 
     ctx.drawImage(img, drawX, drawY, drawW, drawH)
-  }, [])
+  }, [isMobile])
 
   // Handle resize
   useEffect(() => {
@@ -122,14 +134,14 @@ export function ScrollSequence() {
     const scrollTrigger = ScrollTrigger.create({
       trigger: section,
       start: 'top top',
-      end: '+=300%',
+      end: isMobile ? '+=150%' : '+=300%',
       scrub: 0.5,
       pin: true,
       onUpdate: (self) => {
         const progress = self.progress
         const frameIndex = Math.round(progress * (FRAME_COUNT - 1))
         // Load frames around the current scroll position (windowed loading)
-        frameManager.loadWindow(frameIndex)
+        if (!isMobile) frameManager.loadWindow(frameIndex)
         drawFrame(frameIndex)
 
         // Animate words based on scroll progress
@@ -191,7 +203,7 @@ export function ScrollSequence() {
       window.scrollSequenceReady = false
       scrollTrigger.kill()
     }
-  }, [framesReady, drawFrame])
+  }, [framesReady, drawFrame, isMobile])
 
   return (
     <section

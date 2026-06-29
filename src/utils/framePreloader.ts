@@ -1,8 +1,8 @@
 const FRAME_COUNT = 217
 const FRAME_PATH = (i: number) => `/assets/frames-mobile/${String(i + 1).padStart(5, '0')}.webp`
 
-const WINDOW_SIZE = 30
-const READY_THRESHOLD = 5
+const WINDOW_SIZE = 12
+const READY_THRESHOLD = 3
 
 type Listener = () => void
 
@@ -36,9 +36,12 @@ class FrameWindowManager {
    * Unloads frames outside the window to free RAM.
    */
   loadWindow(targetIndex: number) {
+    const isMobile = window.innerWidth < 768
     const half = Math.floor(WINDOW_SIZE / 2)
-    const newStart = Math.max(0, targetIndex - half)
-    const newEnd = Math.min(FRAME_COUNT - 1, newStart + WINDOW_SIZE - 1)
+    
+    // Pada mobile, kita paksa window size = 1 agar hanya memuat targetIndex saja (0 atau 216)
+    const newStart = isMobile ? targetIndex : Math.max(0, targetIndex - half)
+    const newEnd = isMobile ? targetIndex : Math.min(FRAME_COUNT - 1, newStart + WINDOW_SIZE - 1)
 
     // Skip if window hasn't changed
     if (newStart === this.windowStart && newEnd === this.windowEnd) return
@@ -46,6 +49,8 @@ class FrameWindowManager {
     // Unload frames outside the new window
     for (let i = this.windowStart; i <= this.windowEnd; i++) {
       if (i >= 0 && (i < newStart || i > newEnd) && this.frames[i]) {
+        // Membersihkan memori gambar secara agresif
+        this.frames[i]!.src = ''
         this.frames[i] = null
       }
     }
@@ -95,7 +100,12 @@ class FrameWindowManager {
   }
 
   destroy() {
-    this.frames.fill(null)
+    for (let i = 0; i < FRAME_COUNT; i++) {
+      if (this.frames[i]) {
+        this.frames[i]!.src = ''
+        this.frames[i] = null
+      }
+    }
     this.listeners.clear()
     this._ready = false
     this.loadedInWindow = 0

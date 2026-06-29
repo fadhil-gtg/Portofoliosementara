@@ -98,10 +98,10 @@ function TimelineCard({ item, align, language }: { item: TimelineItem; align: 'l
         align === 'right' ? 'md:text-right' : 'md:text-left'
       }`}
     >
-      <h3 className="text-2xl font-display font-semibold tracking-tight text-[#f2ede5]">
+      <h3 className="text-xl font-display font-semibold tracking-tight text-[#f2ede5]">
         {item.title}
       </h3>
-      <p className="mt-5 font-sans text-sm leading-7 text-[#a89e92] md:text-base md:leading-8">
+      <p className="mt-5 font-sans text-xs leading-6 text-[#a89e92] md:text-sm md:leading-7">
         {language === 'id' ? timelineDescriptionsId[item.title] : item.description}
       </p>
       <div
@@ -163,7 +163,7 @@ export function Experience({ language = 'en' }: { language?: Language }) {
           <BlurText
             text={language === 'id' ? 'Pengalaman Saya' : 'My Experience'}
             delay={55}
-            className="text-4xl font-display font-bold leading-none tracking-tight text-[#f2ede5] drop-shadow-[0_22px_60px_rgba(0,0,0,0.42)] [&>span:nth-child(2)]:text-[#c8a96e] sm:text-5xl lg:text-6xl"
+            className="text-2xl font-display font-bold leading-none tracking-tight text-[#f2ede5] drop-shadow-[0_22px_60px_rgba(0,0,0,0.42)] [&>span:nth-child(2)]:text-[#c8a96e] sm:text-3xl lg:text-4xl"
           />
           <div className="mt-8 h-px w-28 bg-gradient-to-r from-[#c8a96e] via-[#c8a96e]/45 to-transparent" />
         </div>

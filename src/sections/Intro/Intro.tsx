@@ -65,21 +65,21 @@ export function Intro() {
             ref={greetingRef}
             className="mb-6 md:mb-8"
           >
-            <p className="text-lg md:text-xl lg:text-2xl font-sans text-gray-400 tracking-wide leading-relaxed">
+            <p className="text-base md:text-lg lg:text-xl font-sans text-gray-400 tracking-wide leading-relaxed">
               Hi, Saya Adhika <span className="inline-block">👋</span>
             </p>
           </div>
 
           {/* Main Title */}
           <div ref={titleRef} className="mb-4 will-change-[opacity,transform]">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-display font-bold text-white leading-[0.95] tracking-tight">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-display font-bold text-white leading-[0.95] tracking-tight">
               Web Designer
             </h1>
           </div>
 
           {/* Subtitle */}
           <div ref={subtitleRef} className="will-change-[opacity,transform]">
-            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-display font-bold text-white/30 leading-[0.95] tracking-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-display font-bold text-white/30 leading-[0.95] tracking-tight">
               & Front-End Developer
             </h2>
           </div>

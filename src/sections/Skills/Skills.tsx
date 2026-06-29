@@ -244,7 +244,7 @@ function SkillCard({ skill, language }: { skill: Skill; language: Language }) {
         <span className="flex h-14 w-14 items-center justify-center overflow-hidden rounded-2xl bg-[#f2ede5]/6 p-2 ring-1 ring-[#f2ede5]/10">
           <img src={skill.icon} alt={skill.name} className="h-full w-full object-contain" />
         </span>
-        <h3 className="text-center text-xl font-display font-semibold tracking-tight text-[#f2ede5]">
+        <h3 className="text-center text-lg font-display font-semibold tracking-tight text-[#f2ede5]">
           {skill.name}
         </h3>
         <p className="text-center font-sans text-sm leading-relaxed text-[#a89e92]">
@@ -269,7 +269,7 @@ export function Skills({ language = 'en' }: { language?: Language }) {
           <BlurText
             text={language === 'id' ? 'Skill Saya' : 'My Skills'}
             delay={55}
-            className="text-4xl font-display font-bold leading-none tracking-tight text-[#f2ede5] drop-shadow-[0_22px_60px_rgba(0,0,0,0.42)] [&>span:nth-child(2)]:text-[#c8a96e] sm:text-5xl lg:text-6xl"
+            className="text-2xl font-display font-bold leading-none tracking-tight text-[#f2ede5] drop-shadow-[0_22px_60px_rgba(0,0,0,0.42)] [&>span:nth-child(2)]:text-[#c8a96e] sm:text-3xl lg:text-4xl"
           />
           <div className="mt-8 h-px w-28 bg-gradient-to-r from-[#c8a96e] via-[#c8a96e]/45 to-transparent" />
         </div>

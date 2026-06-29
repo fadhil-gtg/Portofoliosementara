@@ -109,11 +109,11 @@ export function Contact({ language = 'en' }: { language?: Language }) {
           <BlurText
             text={language === 'id' ? 'Punya Proyek? Mari Kita Wujudkan.' : 'Have a Project? Let\'s Make It Happen.'}
               delay={45}
-              className="max-w-4xl text-4xl font-display font-bold leading-[0.98] tracking-tight text-[#f2ede5] drop-shadow-[0_22px_60px_rgba(0,0,0,0.42)] sm:text-5xl md:text-6xl lg:text-7xl"
+              className="max-w-4xl text-2xl font-display font-bold leading-[0.98] tracking-tight text-[#f2ede5] drop-shadow-[0_22px_60px_rgba(0,0,0,0.42)] sm:text-3xl md:text-4xl lg:text-5xl"
             />
             <div className="mt-8 h-px w-28 bg-gradient-to-r from-[#c8a96e] via-[#c8a96e]/45 to-transparent" />
 
-            <p className="mt-8 max-w-xl font-sans text-sm leading-7 text-[#a89e92] md:text-base md:leading-8">
+            <p className="mt-8 max-w-xl font-sans text-xs leading-6 text-[#a89e92] md:text-sm md:leading-7">
               {language === 'id'
                 ? 'Terbuka untuk kolaborasi, eksplorasi ide, atau membangun pengalaman digital yang terasa rapi, cepat, dan profesional.'
                 : 'Open to collaboration, idea exploration, or building digital experiences that feel neat, fast, and professional.'}

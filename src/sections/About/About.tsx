@@ -114,7 +114,7 @@ export function About({ language = 'en' }: { language?: Language }) {
             <BlurText
               text="Who Am I?"
               delay={70}
-              className="text-4xl font-display font-bold leading-none tracking-tight text-[#f2ede5] drop-shadow-[0_22px_55px_rgba(200,169,110,0.14)] sm:text-5xl lg:text-6xl"
+              className="text-2xl font-display font-bold leading-none tracking-tight text-[#f2ede5] drop-shadow-[0_22px_55px_rgba(200,169,110,0.14)] sm:text-3xl lg:text-4xl"
             />
 
             <div className="h-px w-24 bg-gradient-to-r from-[#c8a96e] via-[#c8a96e]/45 to-transparent" />
@@ -124,7 +124,7 @@ export function About({ language = 'en' }: { language?: Language }) {
                 <ScrollReveal
                   key={paragraph}
                   baseRotation={0}
-                  textClassName="font-sans text-[clamp(0.925rem,1.25vw,1.125rem)] font-medium leading-[1.85] tracking-[-0.01em] text-[#a89e92]"
+                  textClassName="font-sans text-[clamp(0.8rem,1vw,0.95rem)] font-medium leading-[1.85] tracking-[-0.01em] text-[#a89e92]"
                 >
                   {paragraph}
                 </ScrollReveal>

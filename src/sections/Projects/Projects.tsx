@@ -51,7 +51,7 @@ function ProjectCard({ project, index, language }: { project: ProjectData; index
 
       <div className="flex flex-1 flex-col p-6 md:p-7">
         <div className="flex items-start justify-between gap-5">
-          <h3 className={`max-w-lg text-3xl font-display font-semibold leading-tight tracking-tight text-[#f2ede5] md:text-4xl ${project.slug === 'kucek-shoes' ? 'italic' : ''}`}>
+          <h3 className={`max-w-lg text-2xl font-display font-semibold leading-tight tracking-tight text-[#f2ede5] md:text-3xl ${project.slug === 'kucek-shoes' ? 'italic' : ''}`}>
             {project.title}
           </h3>
           <span className="hidden shrink-0 rounded-full border border-[#f2ede5]/10 bg-[#0b0b0e]/45 px-3 py-1.5 text-xs font-mono text-[#f2ede5]/58 sm:inline-flex">
@@ -59,7 +59,7 @@ function ProjectCard({ project, index, language }: { project: ProjectData; index
           </span>
         </div>
 
-        <p className="mt-5 font-sans text-sm leading-7 text-[#a89e92] md:text-base md:leading-8">
+        <p className="mt-5 font-sans text-xs leading-6 text-[#a89e92] md:text-sm md:leading-7">
           {getProjectDescription(project, language)}
         </p>
 

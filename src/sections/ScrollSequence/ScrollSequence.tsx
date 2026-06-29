@@ -11,8 +11,6 @@ export function ScrollSequence() {
 
   const wordDesignRef = useRef<HTMLDivElement>(null)
   const wordBuildRef = useRef<HTMLDivElement>(null)
-  const wordAnimateRef = useRef<HTMLDivElement>(null)
-  const wordDeveloperRef = useRef<HTMLDivElement>(null)
   const bgTextRef = useRef<HTMLDivElement>(null)
 
   const currentFrameRef = useRef(-1)
@@ -135,7 +133,7 @@ export function ScrollSequence() {
     const scrollTrigger = ScrollTrigger.create({
       trigger: section,
       start: 'top top',
-      end: isMobile ? '+=150%' : '+=300%',
+      end: isMobile ? '+=100%' : '+=150%',
       scrub: 0.5,
       pin: true,
       onUpdate: (self) => {
@@ -145,11 +143,15 @@ export function ScrollSequence() {
         if (!isMobile) frameManager.loadWindow(frameIndex)
         drawFrame(frameIndex)
 
-        // Background text move up
+        // PORTFOLIO text: berakhir saat Build muncul penuh (progress 0.25-0.5)
         if (bgTextRef.current) {
-          // Bergerak ke atas seiring scroll (misal, 0 sampai -500px)
-          const yOffset = -(progress * 800)
-          gsap.set(bgTextRef.current, { y: yOffset })
+          const yOffset = -(progress * 600)
+          const bgOpacity = progress < 0.25
+            ? 0.03
+            : progress < 0.5
+            ? 0.03 * (1 - gsap.utils.mapRange(0.25, 0.5, 0, 1, progress))
+            : 0
+          gsap.set(bgTextRef.current, { y: yOffset, opacity: bgOpacity })
         }
 
         // Animate words based on scroll progress
@@ -163,32 +165,12 @@ export function ScrollSequence() {
           gsap.set(wordDesignRef.current, { opacity })
         }
 
-        // BUILD: 0.25-0.5 (fade in 0.2-0.35, fade out 0.5-0.6)
+        // BUILD: 0.25-0.5 (fade in 0.2-0.35, stay visible)
         if (wordBuildRef.current) {
-          const opacity = progress >= 0.2 && progress < 0.5
+          const opacity = progress >= 0.2
             ? gsap.utils.mapRange(0.2, 0.35, 0, 1, progress)
-            : progress >= 0.5 && progress < 0.6
-            ? gsap.utils.mapRange(0.5, 0.6, 1, 0, progress)
             : 0
           gsap.set(wordBuildRef.current, { opacity })
-        }
-
-        // ANIMATE: 0.5-0.75 (fade in 0.45-0.6, fade out 0.75-0.85)
-        if (wordAnimateRef.current) {
-          const opacity = progress >= 0.45 && progress < 0.75
-            ? gsap.utils.mapRange(0.45, 0.6, 0, 1, progress)
-            : progress >= 0.75 && progress < 0.85
-            ? gsap.utils.mapRange(0.75, 0.85, 1, 0, progress)
-            : 0
-          gsap.set(wordAnimateRef.current, { opacity })
-        }
-
-        // DEVELOPER: 0.75-1.0 (fade in 0.7-0.85, stay visible)
-        if (wordDeveloperRef.current) {
-          const opacity = progress >= 0.7
-            ? gsap.utils.mapRange(0.7, 0.85, 0, 1, progress)
-            : 0
-          gsap.set(wordDeveloperRef.current, { opacity })
         }
       },
     })
@@ -240,8 +222,9 @@ export function ScrollSequence() {
       <div 
         ref={bgTextRef}
         className="absolute inset-0 z-[15] flex items-center justify-center overflow-hidden pointer-events-none select-none"
+        style={{ opacity: 0.03 }}
       >
-        <span className="font-display text-[28vw] font-black uppercase leading-none tracking-tighter text-white/[0.04]">
+        <span className="font-display text-[12vw] font-black uppercase leading-none tracking-tighter text-white">
           PORTFOLIO
         </span>
       </div>
@@ -256,21 +239,15 @@ export function ScrollSequence() {
       <div className="pointer-events-none absolute bottom-0 left-0 right-0 z-20 h-48 bg-gradient-to-b from-transparent via-[rgba(200,169,110,0.025)] to-[rgba(200,169,110,0.04)]" />
 
       <div className="absolute inset-0 pointer-events-none z-30">
-        <div ref={wordDesignRef} className="word-design absolute top-[15%] left-[10%] opacity-0 font-display text-6xl font-normal italic tracking-tight text-[#c8a96e] [font-variation-settings:'WONK'_1] md:text-8xl lg:text-9xl">
+        <div ref={wordDesignRef} className="word-design absolute top-[25%] left-[10%] opacity-0 font-display text-4xl font-normal italic tracking-tight text-[#c8a96e] [font-variation-settings:'WONK'_1] md:text-5xl lg:text-6xl">
           Design
         </div>
 
-        <div ref={wordBuildRef} className="word-build absolute top-[30%] right-[10%] opacity-0 font-display text-6xl font-normal italic tracking-tight text-[#c8a96e] [font-variation-settings:'WONK'_1] md:text-8xl lg:text-9xl">
+        <div ref={wordBuildRef} className="word-build absolute top-[55%] right-[10%] opacity-0 font-display text-4xl font-normal italic tracking-tight text-[#c8a96e] [font-variation-settings:'WONK'_1] md:text-5xl lg:text-6xl">
           Build
         </div>
 
-        <div ref={wordAnimateRef} className="word-animate absolute bottom-[35%] left-[12%] opacity-0 font-display text-6xl font-normal italic tracking-tight text-[#c8a96e] [font-variation-settings:'WONK'_1] md:text-8xl lg:text-9xl">
-          Animate
-        </div>
 
-        <div ref={wordDeveloperRef} className="word-developer absolute bottom-[20%] right-[8%] opacity-0 font-display text-6xl font-normal italic tracking-tight text-[#c8a96e] [font-variation-settings:'WONK'_1] md:text-8xl lg:text-9xl">
-          Developer
-        </div>
       </div>
     </section>
   )

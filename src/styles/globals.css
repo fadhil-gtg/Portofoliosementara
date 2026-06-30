@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'Vengeance at Sea';
+  src: url('/fonts/Vengeance at Sea.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* ═══════════════════════════════════════════════════════════
    GLOBAL STYLES — Premium Portfolio 2026
    ═══════════════════════════════════════════════════════════ */
@@ -114,6 +122,10 @@ a {
 
 .section-title {
   @apply text-4xl md:text-5xl font-display font-bold mt-4;
+}
+
+.font-vengeance {
+  font-family: 'Vengeance at Sea', var(--font-display);
 }
 
 .no-scrollbar {
